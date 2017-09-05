@@ -82,6 +82,7 @@ export interface State {
 export default class Main extends React.Component<Props, State>{
   static defaultProps: Partial<Props> = {
     leftIcon: <LeftMenuIcon />,
+    // leftIcon: null,
     rightIcon: null
   }
   constructor(props){
