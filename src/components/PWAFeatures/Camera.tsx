@@ -1,7 +1,11 @@
 import * as React from 'react';
 import FlatButton from 'material-ui/FlatButton';
+import ImageGallery from './ImageGallery';
+
 import VideoIcon from 'material-ui/svg-icons/av/videocam';
 import PhotoIcon from 'material-ui/svg-icons/image/photo-camera';
+
+const images = [];
 
 export default class Camera extends React.Component<any,any> {
 
@@ -13,20 +17,13 @@ export default class Camera extends React.Component<any,any> {
 
        this.state = {
            localMediaStream: null,
+           open: false,
+           photos: [],
        };
 
       this.testCamera = this.testCamera.bind(this);
       this.stopCamera = this.stopCamera.bind(this);
    }
-
-
-  componentWillMount() {
-    this.setState({
-      localMediaStream: null,
-      open: false,
-      photos: [],
-    });
-  }
 
   /* Load the canvas */
   componentDidMount() {
@@ -38,7 +35,7 @@ export default class Camera extends React.Component<any,any> {
     var y = c.height / 2;
 
     ctx.textAlign = "center";
-    ctx.fillText("Test Camera Below",x,y);
+    ctx.fillText("Test Camera Below", x, y);
   }
 
   /* test the camera */
@@ -47,13 +44,13 @@ export default class Camera extends React.Component<any,any> {
       let constraints = { audio: true, video: { width: 1280, height: 720 } };
       console.log(this.state);
       var that = this;
+
+      // get the camera source and play in video element
       navigator.mediaDevices.getUserMedia(constraints)
       .then(function(mediaStream) {
-        console.log(that.state);
         let video = document.querySelector('video');
         video.srcObject = mediaStream;
         that.setState({ localMediaStream: mediaStream });
-        console.log(that.state);
         video.onloadedmetadata = function(e) {
           video.play();
         };
@@ -68,12 +65,14 @@ export default class Camera extends React.Component<any,any> {
       let stream = video.srcObject;
       let tracks = stream.getTracks();
 
+      // for each current track stop the video
       for (let track of tracks) {
         track.stop();
       }
+
       this.setState({ localMediaStream: null });
 
-      console.log("Vid off");
+      console.log('Vid off');
     } else {
       console.log('No video is available')
     }
@@ -82,13 +81,17 @@ export default class Camera extends React.Component<any,any> {
   /* Take a Photo */
   takePhoto = () => {
     let videoObj = { video: true, audio: true };
-
+    const that = this;
     if (navigator.getUserMedia && this.state.localMediaStream) {
       navigator.getUserMedia(videoObj, function(stream) {
               var video = document.getElementById("video");
               var canvas : any = document.getElementById("canvas");
               var context = canvas.getContext("2d");
               context.drawImage(video, 0, 0, 500, 300);
+              const data = canvas.toDataURL("image/png");
+              images.push(data);
+              that.setState({ photos: [] });
+              // context.
            }, function(error) {
                console.error("Video capture error: ", error);
            });
@@ -105,15 +108,15 @@ export default class Camera extends React.Component<any,any> {
 
     if (navigator.getUserMedia) {
       camera = (
-      <div>
-        <h2>Camera </h2>
-          <FlatButton label={"Start Video"} onTouchTap={this.testCamera} icon={<VideoIcon />} /><br />
-          <FlatButton label={"Stop Video"}  onTouchTap={this.stopCamera} icon={<VideoIcon />} /><br />
-          <FlatButton label={"Take a Photo"} onTouchTap={this.takePhoto} icon={<PhotoIcon />} /><br />
-          <video  id="video" width="500" height="300"></video>
-          <canvas id="canvas" width="500" height="300" style={{backgroundColor: 'grey'}}></canvas>
-        <br />
-      </div>
+        <div>
+          <h2>Camera </h2>
+            <FlatButton label={"Start Video"} onTouchTap={this.testCamera} icon={<VideoIcon />} />
+            <FlatButton label={"Stop Video"}  onTouchTap={this.stopCamera} icon={<VideoIcon />} />
+            <FlatButton label={"Take a Photo"} onTouchTap={this.takePhoto} icon={<PhotoIcon />} />
+            <video  id="video" width="500" height="300" />
+            <canvas hidden={true} id="canvas" width="500" height="300" style={{backgroundColor: 'grey'}}></canvas>
+          <br />
+        </div>
       );
     } else {
       camera = (
@@ -122,9 +125,11 @@ export default class Camera extends React.Component<any,any> {
         </div>
       );
     }
+
     return (
       <div style={{ margin: 20, textAlign: 'center' }}>
         {camera}
+        <ImageGallery images={images} />
       </div>
     );
   }

@@ -32,10 +32,6 @@
 import * as React from 'react';
 import {AppPageInterface} from '../Main';
 import {Card, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-
-// Device Components
-import BatteryManager from './BatteryManager';
 
 
 export interface Props {
@@ -45,31 +41,28 @@ export interface Props {
 
 export default class DashBoard extends React.Component<Props, {}>{
 
-  render(){
-    // const {appPage} = this.props;
+  render() {
 
     const cameraCapable = false;
     const michrophoneCapable = false;
     const blueToothCapable = false;
     const pushNotificationsCapable = false;
-    const usbCapable = false;
     const vibrationCapable = false;
     const proximityCapable = false;
-    // const batteryStatus = 'n/a ';
+    const batteryStatusCapable = false;
+
     return <div style={{margin: 20}}>
               <Card>
                 <CardText>
-                  <h1>Features Dash:</h1>
-                  Camera - {cameraCapable + ''}<br /><br />
-                  Microphone - {michrophoneCapable + ''}<br /><br />
-                  Bluetooth device - {blueToothCapable + ''} <br />
-                  Send push notification - {pushNotificationsCapable + ''}
-                        <FlatButton disabled={!pushNotificationsCapable} label="send message" /><br />
-                  USB Devices - {usbCapable + ''}<br /><br />
-                  <h2>Harware Functinos</h2>
-                  Vibration - {vibrationCapable + ''} <br /><br />
-                  Proximity - {proximityCapable + ''} <br /><br />
-                  Battery - <BatteryManager /> <br /><br />
+                  <h1 style={{textAlign: 'center'}}>Feature Dashboard</h1>
+
+                  Camera - {cameraCapable ? 'available' : 'not available'}<br /><br />
+                  Microphone - {michrophoneCapable ? 'available' : 'not available'}<br /><br />
+                  Bluetooth device - {blueToothCapable ? 'available' : 'not available'} <br /><br />
+                  Send push notification - {pushNotificationsCapable  ? 'available' : 'not available'}  <br /><br />
+                  Vibration - {vibrationCapable ? 'available' : 'not available'} <br /><br />
+                  Proximity - {proximityCapable ? 'available' : 'not available'} <br /><br />
+                  Battery - { batteryStatusCapable ? 'available' : 'not available'} <br /><br />
                 </CardText>
               </Card>
            </div>;
