@@ -103,16 +103,15 @@ export default class Camera extends React.Component<any,any> {
 
   /* render the camera canvas */
   render() {
-
     let camera = null;
 
     if (navigator.getUserMedia) {
       camera = (
-        <div>
+        <div style={{ backgroundColor: 'grey'}}>
           <h2>Camera </h2>
             <FlatButton label={"Start Video"} onTouchTap={this.testCamera} icon={<VideoIcon />} />
             <FlatButton label={"Stop Video"}  onTouchTap={this.stopCamera} icon={<VideoIcon />} />
-            <FlatButton label={"Take a Photo"} onTouchTap={this.takePhoto} icon={<PhotoIcon />} />
+            <FlatButton label={"Take a Photo"} onTouchTap={this.takePhoto} icon={<PhotoIcon />} /><br />
             <video  id="video" width="500" height="300" />
             <canvas hidden={true} id="canvas" width="500" height="300" style={{backgroundColor: 'grey'}}></canvas>
           <br />
@@ -129,7 +128,7 @@ export default class Camera extends React.Component<any,any> {
     return (
       <div style={{ margin: 20, textAlign: 'center' }}>
         {camera}
-        <ImageGallery images={images} />
+        <ImageGallery appPage={this.props.appPage} images={images} />
       </div>
     );
   }
