@@ -38,7 +38,7 @@ import {
   EULA_REJECTED
 } from '../actions';
 import {combineReducers} from 'redux';
-import * as demoReducers from './storeDemo';
+
 
 
 
@@ -111,7 +111,6 @@ const defaultReducers = {
 }
 
 const reducer = combineReducers({
-  ...demoReducers,
   ...defaultReducers
 });
 

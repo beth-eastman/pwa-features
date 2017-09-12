@@ -1,6 +1,6 @@
 /**
- * @file ProductContextMenu.tsx
- * A menu with interactions for a product (ie: Share)
+ * @file AppRoutes.tsx
+ * File responsible for setting routes for the application.
  *
  * Created by Jack LightFoot on 08/22/2017
  *
@@ -30,20 +30,33 @@
  * Original Software: robert.a.kayl.civ@mail.mil
  */
 import * as React from 'react';
-import IconButton from 'material-ui/IconButton';
-import MoreVirt from 'material-ui/svg-icons/navigation/more-vert';
-import MenuItem from 'material-ui/MenuItem';
-import IconMenu from 'material-ui/IconMenu';
-export interface Props{
+import MainHomePage from './HomePage';
+import {withRouter} from 'react-router-dom';
+import {AppPageInterface} from './Main';
+import RouteItem from './RouteItem';
 
+export interface Props {
+  appPage: AppPageInterface
 }
 
-const ProductContextMenu: React.SFC<Props> = (props) => {
-  return <IconMenu iconButtonElement={<IconButton><MoreVirt /></IconButton>} >
-                 <MenuItem primaryText="Save for Later" />
-                 <MenuItem primaryText="Share" />
-                 <MenuItem primaryText="Read Reviews" />
-           </IconMenu>;
+export interface State {
+
+}
+class AppRoutes extends React.Component<Props, State>{
+
+
+  render() {
+
+    const props = {...this.props, basePath: '/'};
+
+    // return <RouteGroup defaultProps={props} appPage={this.props.appPage}>
+    //             <RouteItem tab={0} title={'Home'} exact path="/" componentPage={MainHomePage} />
+    //             ... Add More RouteItems here
+    // </RouteGroup>;
+
+    return <RouteItem {...props} tab={0} title={'Home'} exact path="/" componentPage={MainHomePage} />
+
+  }
 }
 
-export default ProductContextMenu;
+export default withRouter(AppRoutes);

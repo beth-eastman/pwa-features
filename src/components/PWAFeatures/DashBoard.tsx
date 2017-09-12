@@ -33,11 +33,9 @@ import * as React from 'react';
 import {AppPageInterface} from '../Main';
 import {Card, CardText} from 'material-ui/Card';
 
-
 export interface Props {
   appPage: AppPageInterface;
 }
-
 
 export default class DashBoard extends React.Component<Props, {}>{
 
@@ -55,14 +53,13 @@ export default class DashBoard extends React.Component<Props, {}>{
               <Card>
                 <CardText>
                   <h1 style={{textAlign: 'center'}}>Feature Dashboard</h1>
-
                   Camera - {cameraCapable ? 'available' : 'not available'}<br /><br />
                   Microphone - {michrophoneCapable ? 'available' : 'not available'}<br /><br />
                   Bluetooth device - {blueToothCapable ? 'available' : 'not available'} <br /><br />
                   Send push notification - {pushNotificationsCapable  ? 'available' : 'not available'}  <br /><br />
                   Vibration - {vibrationCapable ? 'available' : 'not available'} <br /><br />
                   Proximity - {proximityCapable ? 'available' : 'not available'} <br /><br />
-                  Battery - { batteryStatusCapable ? 'available' : 'not available'} <br /><br />
+                  Battery - { batteryStatusCapable + '' } <br /><br />
                 </CardText>
               </Card>
            </div>;

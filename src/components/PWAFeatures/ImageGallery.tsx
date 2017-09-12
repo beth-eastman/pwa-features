@@ -31,11 +31,11 @@ export default class ImageGallery extends React.Component<Props, State> {
     if (width > 600) {
       return 2;
     }
-    return 1
+    return 1;
   }
 
   render() {
-    
+
     return (
       <div>
         <h2>Image Gallery</h2>

@@ -30,18 +30,16 @@
  * Original Software: robert.a.kayl.civ@mail.mil
  */
 import * as React from 'react';
-// import MainHomePage from './HomePage';
 import {withRouter} from 'react-router-dom';
-// import StoreRoutes from './StoreDemo/StoreRoutes';
 import {AppPageInterface} from './Main';
-import RouteGroup from './RouteGroup';
 import RouteItem from './RouteItem';
+import RouteGroup from './RouteGroup';
 
-
+// Components
 import DashBoard from './PWAFeatures/DashBoard';
-import Bluetooth from './PWAFeatures/Bluetooth';
 import BrowserInfoDashBoard from './PWAFeatures/BrowserInfoDashBoard';
 import Camera from './PWAFeatures/Camera';
+import Bluetooth from './PWAFeatures/Bluetooth';
 
 export interface Props {
   appPage: AppPageInterface
@@ -58,10 +56,10 @@ class AppRoutes extends React.Component<Props, State>{
     const props = {...this.props, basePath: '/'};
 
     return <RouteGroup defaultProps={props} appPage={this.props.appPage}>
-              <RouteItem tab={1} title={'Dash'} exact path="/" component={DashBoard} />
-              <RouteItem tab={2} title={'Browser'} exact path ="/browser" component={BrowserInfoDashBoard} />
-              <RouteItem tab={3} title={'Camera'} exact path="/camera" component={Camera} />
-              <RouteItem tab={3} title={'Bluetooth'} exact path="/bluetooth" component={Bluetooth} />
+                <RouteItem tab={0} title={'Dash'} exact path="/" componentPage={DashBoard} />
+                <RouteItem tab={1} title={'Browser'} exact path="/browser" componentPage={BrowserInfoDashBoard}/>
+                <RouteItem tab={2} title={'Camera'} exact path="/camera" componentPage={Camera} />
+                <RouteItem tab={3} title={'Bluetooth'} exact path="/bluetooth" componentPage={Bluetooth}/>
     </RouteGroup>;
 
   }

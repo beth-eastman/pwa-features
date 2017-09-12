@@ -1,7 +1,6 @@
 /**
- * @file AppChecklist.tsx
- * Components displays if the application has been update and notifies
- * the user to update the version number.
+ * @file HomePage.tsx
+ * Default Home Page.
  *
  * Created by Jack LightFoot on 08/22/2017
  *
@@ -31,24 +30,34 @@
  * Original Software: robert.a.kayl.civ@mail.mil
  */
 import * as React from 'react';
-import {AppPageInterface} from '../Main';
-import Checkbox from 'material-ui/Checkbox';
-export interface Props {
-  appPage: AppPageInterface;
+import {AppPageInterface} from './Main';
+
+declare module 'react' { //See https://github.com/zilverline/react-tap-event-plugin/issues/58
+    interface HTMLProps<T> {
+        onTouchTap?: React.EventHandler<React.TouchEvent<T>>;
+    }
 }
 
-export default class AppChecklist extends React.Component<Props, {}>{
+export interface Props {
+  appPage: AppPageInterface;
+  match:{url: string};
+}
+
+export interface State {
+
+}
+
+export default class Home extends React.Component<Props, State>{
+
+
+  componentWillMount(){
+    this.props.appPage.setPageTitle("Home");
+
+  }
 
   render(){
-    const {appPage} = this.props;
-    const versionChanged = appPage.version !== '0.0.0';
     return <div>
-              <div>
-                <Checkbox checked={versionChanged} label={'Version: ' + appPage.version} />
-                {!versionChanged &&<div>Please change from the default version number in your webpack config<br />
-                  You will need to restart webpack
-                  </div>}
-              </div>
-    </div>;
+             <h1>Home Page</h1>
+           </div>;
   }
 }

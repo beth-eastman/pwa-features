@@ -32,7 +32,6 @@
 export const eula = {
   title: "Default EULA",
   paragraphs: [
-    "edit EULA in --src/res/data/settings--",
     "By agreeing to have any of DHA software products installed on to your device and by subsequent use of the Software, you agree to comply with the terms of this general End User License Agreement (EULA) where no specific agreement is in place between DHA and the user of the software. If you do not agree to the terms of this EULA, do not install or use the Software but uninstall it from your device. This EULA applies to any upgrades and supplements to the original Software provided and is referred to on your opening screen.",
     "1. The Licensed Software is owned by The Defense Health Agency (DHA), an agency of the United States Department of Defense (DOD). The Software is licensed, not sold, only on the terms of this EULA. Acceptance and installation of the software indicates your acceptance of the terms and conditions of this EULA.",
     "Upon installation of the software, you will acquire the right to use the Software, directly from DHA. You assume responsibility for the selection of the program to achieve your intended results, and for the installation, use and results obtained from the Licensed Software.",

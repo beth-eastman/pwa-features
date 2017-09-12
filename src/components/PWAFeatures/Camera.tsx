@@ -39,7 +39,7 @@ export default class Camera extends React.Component<any,any> {
   }
 
   /* test the camera */
-  testCamera = (localMediaStream) => {
+  testCamera = () => {
       // Prefer camera resolution nearest to 1280x720.
       let constraints = { audio: true, video: { width: 1280, height: 720 } };
       console.log(this.state);
@@ -55,7 +55,7 @@ export default class Camera extends React.Component<any,any> {
           video.play();
         };
       })
-      .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
+      .catch(function(err) { console.log(err.name + ": " + err.message); });
   }
 
   /* stop current video stream */
@@ -107,7 +107,7 @@ export default class Camera extends React.Component<any,any> {
 
     if (navigator.getUserMedia) {
       camera = (
-        <div style={{ backgroundColor: 'grey'}}>
+        <div>
           <h2>Camera </h2>
             <FlatButton label={"Start Video"} onTouchTap={this.testCamera} icon={<VideoIcon />} />
             <FlatButton label={"Stop Video"}  onTouchTap={this.stopCamera} icon={<VideoIcon />} />
