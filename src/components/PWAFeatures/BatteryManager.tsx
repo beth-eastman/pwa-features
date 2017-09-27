@@ -77,7 +77,6 @@ export default class BatteryManager extends React.Component<Props, {}>{
         batteryStatus: "not available"
       });
     }
-
   }
 
   render() {

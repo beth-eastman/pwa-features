@@ -118,13 +118,13 @@ export let homeFooterAbsolute = {
 
 export let appBarTitleStyle = {
   position: 'relative' as 'relative',
-  left: -40,
+  left: -20,
   top: 1
 }
 
 export let appBarIconeStyle = {
   position: 'relative' as 'relative',
-  left: -20
+  left: -10,
 }
 
 export let toolBarContentLeft = {
