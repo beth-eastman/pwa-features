@@ -30,39 +30,28 @@
  * Original Software: robert.a.kayl.civ@mail.mil
  */
 import * as React from 'react';
-import {AppPageInterface} from '../Main';
-import {Card, CardText} from 'material-ui/Card';
-// import FlatButton from 'material-ui/FlatButton';
+import { Card, CardText } from 'material-ui/Card';
 
-export interface Props {
-  appPage: AppPageInterface;
-}
+export default class BrowserInfoDashBoard extends React.Component<{}, {}> {
 
-
-export default class BrowserInfoDashBoard extends React.Component<Props, {}>{
-
-  render(){
-    // const {appPage} = this.props;
-    // const cameraCapable = false;
-    // const michrophoneCapable = false;
-    // const blueToothCapable = false;
-    // const pushNotificationsCapable = false;
-    // const usbCapable = false;
-    return <div >
-              <div style={{margin: 20}}>
-              <Card>
-                <CardText>
-                  <h1>Browser Dash:</h1>
-                  Browser Engine Name: {navigator.product} <br /><br />
-                  Browser Platform: {navigator.platform} <br /><br />
-                  Browser App Code Name: {navigator.appCodeName} <br /><br />
-                  Browser Version: {navigator.appVersion} <br /><br />
-                  Browser Language: {navigator.language} <br /><br />
-                  Browser Online: {navigator.onLine + ''} <br /><br />
-                  Browsers Open Location: {window.location.href} <br /><br />
-                </CardText>
-              </Card>
-           </div>
-           </div>;
+  render() {
+    return (
+      <div >
+        <div style={{margin: 20}}>
+          <Card>
+            <CardText>
+              <h1 style={{ textAlign: 'center' }}>Browser Dashboard</h1>
+              Browser Engine Name: {navigator.product} <br /><br />
+              Browser Platform: {navigator.platform} <br /><br />
+              Browser App Code Name: {navigator.appCodeName} <br /><br />
+              Browser Version: {navigator.appVersion} <br /><br />
+              Browser Language: {navigator.language} <br /><br />
+              Browser Online: {navigator.onLine + ''} <br /><br />
+              Browsers Open Location: {window.location.href} <br /><br />
+            </CardText>
+          </Card>
+        </div>
+     </div>
+    );
   }
 }

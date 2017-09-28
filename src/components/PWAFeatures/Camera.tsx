@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 // Components
+import Card from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import ImageGallery from './ImageGallery';
 import SnackBar from 'material-ui/Snackbar';
@@ -110,18 +112,23 @@ export default class Camera extends React.Component<any,any> {
       );
     } else {
       camera = (
-        <div>
+        <h3>
           Camera not available in this browser, please upgrade.
-        </div>
+        </h3>
       );
     }
 
     return (
-      <div style={{ margin: 20, textAlign: 'center' }}>
+      <Card style={{ margin: 20, padding: 10, textAlign: 'center' }}>
         {camera}
-        <ImageGallery appPage={this.props.appPage} images={images} />
-        <SnackBar message="Please open the camera to take a photo" open={this.state.cameraOpen} />
-      </div>
+        {navigator.getUserMedia &&
+          <div>
+            <Divider />
+            <ImageGallery appPage={this.props.appPage} images={images} />
+            <SnackBar message="Please open the camera to take a photo" open={this.state.cameraOpen} />
+          </div>
+        }
+      </Card>
     );
   }
 }

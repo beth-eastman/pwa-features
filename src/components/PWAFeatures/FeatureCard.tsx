@@ -35,39 +35,35 @@ import * as React from 'react';
 
 // material-ui
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import Done from 'material-ui/svg-icons/action/done';
 import HighlightRemove from 'material-ui/svg-icons/action/highlight-off'
 
 const Check = (<Done style={{color: 'green'}} />);
-const None = (<HighlightRemove style={{color: 'red'}}/>);
+const None = (<HighlightRemove style={{color: 'darkred'}}/>);
 
 export interface Props {
   featureName: string,
   featureEnabled: boolean,
   testFeatureFunction: any,
-  featureDetails?: string,
+  featureDetails?: any,
 }
 
 export interface State {
 
 }
 
-export default class DashBoard extends React.Component<Props, State>{
-
-  constructor(props) {
-    super(props);
-    // this.state = {
-
-    // }
-  }
+export default class DashBoard extends React.Component<Props, State> {
 
   // TODO: fix expandable function conditionally on feature enabled
   render() {
     return(
         <Card style={{ margin: 20}}>
           <CardHeader
-            style={{ backgroundColor: this.props.featureEnabled ? 'lightgreen' : 'lightcoral' }}
+            style={{
+              backgroundColor: this.props.featureEnabled ? 'lightgreen' : 'lightcoral'
+            }}
             title={this.props.featureName}
             subtitle={this.props.featureEnabled ? 'Supported' : 'Not Supported'}
             avatar={
@@ -79,6 +75,7 @@ export default class DashBoard extends React.Component<Props, State>{
           <CardText expandable={true}>
             {this.props.featureDetails}
           </CardText>
+          <Divider />
           <CardActions expandable={true}>
             <FlatButton
               label={"Test " + this.props.featureName}

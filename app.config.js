@@ -38,10 +38,10 @@ const name = 'PWA Features';
 
 module.exports = {
     name: name, // name of your app
-    name_long: name + ' V ' + appVersion,
+    name_long: name,
     version: appVersion,
-    theme_color: '#3F51B5',
-    background_color: "#3F51B5",
+    theme_color: '#000000',
+    background_color: "#000000",
     dbPrefix: 'changeMeDev:', // database prefix for your app
     appType: 'tabs' //options are: tabs|default
 }
