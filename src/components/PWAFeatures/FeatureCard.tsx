@@ -54,7 +54,7 @@ export interface State {
 
 }
 
-export default class DashBoard extends React.Component<Props, State> {
+export default class FeatureCard extends React.Component<Props, State> {
 
   // TODO: fix expandable function conditionally on feature enabled
   render() {

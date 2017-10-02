@@ -1,10 +1,10 @@
 {
   "name": "PWA Features",
-  "short_name": "PWA Features V 1.0.0",
+  "short_name": "PWA Features",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#3F51B5",
-  "theme_color": "#3F51B5",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "description": "A description of the app",
   "icons": [{
     "src": "8fd22352b424c2ce769bfd142b54d23b.png",

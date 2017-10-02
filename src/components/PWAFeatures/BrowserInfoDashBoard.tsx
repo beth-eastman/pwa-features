@@ -35,6 +35,7 @@ import { Card, CardText } from 'material-ui/Card';
 export default class BrowserInfoDashBoard extends React.Component<{}, {}> {
 
   render() {
+    console.log(navigator);
     return (
       <div >
         <div style={{margin: 20}}>
@@ -44,9 +45,11 @@ export default class BrowserInfoDashBoard extends React.Component<{}, {}> {
               Browser Engine Name: {navigator.product} <br /><br />
               Browser Platform: {navigator.platform} <br /><br />
               Browser App Code Name: {navigator.appCodeName} <br /><br />
+              Browser App Name: {navigator.appName} <br /><br />
               Browser Version: {navigator.appVersion} <br /><br />
               Browser Language: {navigator.language} <br /><br />
               Browser Online: {navigator.onLine + ''} <br /><br />
+              Browser Vendor: {navigator.vendor} <br /><br />
               Browsers Open Location: {window.location.href} <br /><br />
             </CardText>
           </Card>

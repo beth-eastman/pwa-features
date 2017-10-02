@@ -64,7 +64,6 @@ export default class Camera extends React.Component<any,any> {
       }
 
       this.setState({ localMediaStream: null });
-
     } else {
       console.log('No video is available')
     }
@@ -125,7 +124,9 @@ export default class Camera extends React.Component<any,any> {
           <div>
             <Divider />
             <ImageGallery appPage={this.props.appPage} images={images} />
-            <SnackBar message="Please open the camera to take a photo" open={this.state.cameraOpen} />
+            <SnackBar
+              message="Please open the camera to take a photo"  open={this.state.cameraOpen}
+            />
           </div>
         }
       </Card>
