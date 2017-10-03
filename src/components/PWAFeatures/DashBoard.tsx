@@ -56,14 +56,11 @@ export default class DashBoard extends React.Component<Props, State>{
           </CardText>
         </Card>
         {
-          features.map((feature, index) => {
+          features.map((feature) => {
             return (
               <FeatureCard
-                key={index}
-                featureName={feature.featureName}
-                featureDetails={feature.featureDetails}
-                featureEnabled={feature.featureEnabled}
-                component={feature.component}
+                key={feature.id}
+                feature={feature}
               />
             );
           })

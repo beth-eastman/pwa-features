@@ -38,22 +38,24 @@ export default class BrowserInfoDashBoard extends React.Component<{}, {}> {
     console.log(navigator);
     return (
       <div >
-        <div style={{margin: 20}}>
-          <Card>
-            <CardText>
-              <h1 style={{ textAlign: 'center' }}>Browser Dashboard</h1>
-              Browser Engine Name: {navigator.product} <br /><br />
-              Browser Platform: {navigator.platform} <br /><br />
-              Browser App Code Name: {navigator.appCodeName} <br /><br />
-              Browser App Name: {navigator.appName} <br /><br />
-              Browser Version: {navigator.appVersion} <br /><br />
-              Browser Language: {navigator.language} <br /><br />
-              Browser Online: {navigator.onLine + ''} <br /><br />
-              Browser Vendor: {navigator.vendor} <br /><br />
-              Browsers Open Location: {window.location.href} <br /><br />
-            </CardText>
-          </Card>
-        </div>
+        <Card style={{ margin: 20}}>
+          <CardText>
+            <h1 style={{ textAlign: 'center' }}>Browser Dashboard</h1>
+          </CardText>
+        </Card>
+        <Card style={{ margin: 20}}>
+          <CardText>
+            Browser Engine Name: {navigator.product} <br /><br />
+            Browser Platform: {navigator.platform} <br /><br />
+            Browser App Code Name: {navigator.appCodeName} <br /><br />
+            Browser App Name: {navigator.appName} <br /><br />
+            Browser Version: {navigator.appVersion} <br /><br />
+            Browser Language: {navigator.language} <br /><br />
+            Browser Online: {navigator.onLine + ''} <br /><br />
+            Browser Vendor: {navigator.vendor} <br /><br />
+            Browsers Open Location: {window.location.href} <br /><br />
+          </CardText>
+        </Card>
      </div>
     );
   }

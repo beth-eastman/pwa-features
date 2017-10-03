@@ -40,16 +40,15 @@ import FlatButton from 'material-ui/FlatButton';
 import Done from 'material-ui/svg-icons/action/done';
 import HighlightRemove from 'material-ui/svg-icons/action/highlight-off'
 
+import { FeatureInterface } from '../../res/data/features';
+
 import Dialog from 'material-ui/Dialog';
 
 const Check = (<Done style={{color: 'green'}} />);
 const None = (<HighlightRemove style={{color: 'darkred'}}/>);
 
 export interface Props {
-  featureName: string,
-  featureEnabled: boolean,
-  featureDetails?: any,
-  component?: any,
+  feature: FeatureInterface;
 }
 
 export interface State {
@@ -89,37 +88,37 @@ export default class FeatureCard extends React.Component<Props, State> {
         <Card style={{ margin: 20}}>
           <CardHeader
             style={{
-              backgroundColor: this.props.featureEnabled ? 'lightgreen' : 'lightcoral'
+              backgroundColor: this.props.feature.featureEnabled ? 'lightgreen' : 'lightcoral'
             }}
-            title={this.props.featureName}
-            subtitle={this.props.featureEnabled ? 'Supported' : 'Not Supported'}
+            title={this.props.feature.featureName}
+            subtitle={this.props.feature.featureEnabled ? 'Supported' : 'Not Supported'}
             avatar={
-              this.props.featureEnabled ? Check : None
+              this.props.feature.featureEnabled ? Check : None
             }
             actAsExpander={true}
-            showExpandableButton={this.props.featureEnabled}
+            showExpandableButton={this.props.feature.featureEnabled}
           />
           <CardText expandable={true}>
-            {this.props.featureDetails}
+            {this.props.feature.featureDetails}
           </CardText>
           <Divider />
           <CardActions expandable={true}>
             <FlatButton
-              label={"Test " + this.props.featureName}
-              disabled={!this.props.featureEnabled}
+              label={"Test " + this.props.feature.featureName}
+              disabled={!this.props.feature.featureEnabled}
               style={{ margin: 10 }}
               onTouchTap={ this.handleOpen }
             />
           </CardActions>
           <Dialog
-            title={"Test " + this.props.featureName}
+            title={"Test " + this.props.feature.featureName}
             actions={actions}
             modal={false}
             open={this.state.open}
             autoScrollBodyContent={true}
             onRequestClose={this.handleClose}
           >
-            { this.props.component }
+            { this.props.feature.component }
           </Dialog>
         </Card>
     );
