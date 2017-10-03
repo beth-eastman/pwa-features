@@ -43,7 +43,7 @@ export default class Geolocation extends React.Component<Props, State> {
   /* render the camera canvas */
   render() {
     return (
-      <Card style={{ margin: 20, padding: 10, textAlign: 'center' }}>
+      <Card style={{ padding: 10, textAlign: 'center' }}>
         <Map />
         <CardText>
           {this.state.latitude && "Latitude: " + this.state.latitude }

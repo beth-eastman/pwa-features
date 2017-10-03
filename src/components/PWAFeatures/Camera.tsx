@@ -118,7 +118,7 @@ export default class Camera extends React.Component<any,any> {
     }
 
     return (
-      <Card style={{ margin: 20, padding: 10, textAlign: 'center' }}>
+      <Card style={{ padding: 10, textAlign: 'center' }}>
         {camera}
         {navigator.getUserMedia &&
           <div>

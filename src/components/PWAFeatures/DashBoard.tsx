@@ -63,7 +63,7 @@ export default class DashBoard extends React.Component<Props, State>{
                 featureName={feature.featureName}
                 featureDetails={feature.featureDetails}
                 featureEnabled={feature.featureEnabled}
-                testFeatureFunction={feature.testFeatureFunction}
+                component={feature.component}
               />
             );
           })

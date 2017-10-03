@@ -1,7 +1,7 @@
-// import * as React from 'react';
-// import Bluetooth from './components/Bluetooth';
-// import Camera from './components/Camera';
-// import Microphone from './components/Microphone';
+import * as React from 'react';
+import Bluetooth from '../../components/PWAFeatures/Bluetooth';
+import Camera from '../../components/PWAFeatures/Camera';
+import Microphone from '../../components/PWAFeatures/Microphone';
 // import Geolocation from '../../components/PWAFeatures/Geolocation';
 
 const n = navigator as any;
@@ -22,105 +22,106 @@ const geolocation = navigator.geolocation ? true : false;
 const fileAccessCapable = w.File !== undefined;
 const vrCapable = false;
 
-/* Use the device camera */
+/*
+// Use the device camera
 const getCamera = () => {
   console.log('testing camera');
 };
 
-/* Use the device vibration */
+// Use the device vibration
 const deviceVibrate = () => {
   console.log('test device vibration');
   navigator.vibrate(1);
 };
 
-/* Use the devices microphone */
+// Use the devices microphone
 const useMicrophone = () => {
   console.log('use and record microphone')
 };
 
-/* Connect to bluetooth low energy devices */
+// Connect to bluetooth low energy devices
 const useBluetooth = () => {
   console.log('use and connect to blueetooth');
 };
 
-/* Use service worker push function */
+// Use service worker push function
 const sendPushNotification = () => {
   console.log('send push notification to device');
 }
-
+*/
 
 const features = [
   {
     featureName: 'Camera',
     featureDetails: 'Access Camera for Photo and Video',
     featureEnabled: cameraCapable,
-    testFeatureFunction: () => {getCamera()},
+    component: (<Camera />),
   },
   {
     featureName: 'Microphone',
     featureDetails: 'Use Device Microphone',
     featureEnabled: michrophoneCapable,
-    testFeatureFunction: () => {useMicrophone()}
+    component: (<Microphone />),
   },
   {
     featureName: 'Bluetooth',
     featureDetails: 'Use Bluetooth Low Energy connected to Device',
     featureEnabled: blueToothCapable,
-    testFeatureFunction: () => {useBluetooth()}
+    component: (<Bluetooth />),
   },
   {
     featureName: 'Push Notification',
     featureDetails: 'Get Push Notificatons',
     featureEnabled: pushNotificationsCapable,
-    testFeatureFunction: () => {sendPushNotification()}
+    component: null,
   },
   {
     featureName: 'Proximity',
     featureDetails: 'Get Proximity of Device',
     featureEnabled: proximityCapable,
-    testFeatureFunction: () => {console.log('TODO')}
+    component: null,
   },
   {
     featureName: 'Battery',
     featureDetails: 'Device Battery Stats',
     featureEnabled: batteryStatusCapable,
-    testFeatureFunction: () => {console.log('TODO')}
+    component: null,
   },
   {
     featureName: 'Vibration',
     featureDetails: 'Device vibration',
     featureEnabled: vibrationCapable,
-    testFeatureFunction: () => {deviceVibrate()}
+    component: null,
   },
   {
     featureName: 'Orientation',
     featureDetails: 'Device orientation',
     featureEnabled: false,
-    testFeatureFunction: () => {console.log('TODO')}
+    component: null,
   },
   {
     featureName: 'Device Motions',
     featureDetails: 'Device 3D motions',
     featureEnabled: false,
-    testFeatureFunction: () => {console.log('TODO')}
+    component: null,
   },
   {
     featureName: 'Geolocation',
     featureDetails: 'Get device location',
     featureEnabled: geolocation,
-    testFeatureFunction: () => {console.log('TODO')}
+    component: null,
   },
   {
     featureName: 'File Access',
     featureDetails: 'Access the device local files',
     featureEnabled: fileAccessCapable,
-    testFeatureFunction: () => {console.log('TODO')}
+    component: null,
   },
   {
     featureName: 'Virtual Reality',
     featureDetails: 'Use Virtual Reality Device',
     featureEnabled: vrCapable,
-    testFeatureFunction: () => {console.log('TODO')}
+    component: null,
   },
 ]
 

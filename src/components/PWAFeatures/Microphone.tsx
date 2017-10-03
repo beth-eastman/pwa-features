@@ -54,7 +54,7 @@ export default class Microphone extends React.Component<Props, State> {
     // }
 
     return (
-      <Card style={{ margin: 20, padding: 10, textAlign: 'center' }}>
+      <Card style={{ padding: 10, textAlign: 'center' }}>
         <MicrophoneIcon />
         <br />
         <input type="file" accept="audio/*;capture=microphone" />
