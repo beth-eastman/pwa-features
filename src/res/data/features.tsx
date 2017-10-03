@@ -1,3 +1,9 @@
+// import * as React from 'react';
+// import Bluetooth from './components/Bluetooth';
+// import Camera from './components/Camera';
+// import Microphone from './components/Microphone';
+// import Geolocation from '../../components/PWAFeatures/Geolocation';
+
 const n = navigator as any;
 const w = window as any;
 
@@ -48,7 +54,7 @@ const features = [
     featureName: 'Camera',
     featureDetails: 'Access Camera for Photo and Video',
     featureEnabled: cameraCapable,
-    testFeatureFunction: () => {getCamera()}
+    testFeatureFunction: () => {getCamera()},
   },
   {
     featureName: 'Microphone',

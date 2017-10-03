@@ -38,8 +38,6 @@ import RouteGroup from './RouteGroup';
 // Components
 import DashBoard from './PWAFeatures/DashBoard';
 import BrowserInfoDashBoard from './PWAFeatures/BrowserInfoDashBoard';
-import Camera from './PWAFeatures/Camera';
-import Bluetooth from './PWAFeatures/Bluetooth';
 
 export interface Props {
   appPage: AppPageInterface
@@ -56,10 +54,18 @@ class AppRoutes extends React.Component<Props, State>{
     const props = {...this.props, basePath: '/'};
 
     return <RouteGroup defaultProps={props} appPage={this.props.appPage}>
-                <RouteItem tab={0} title={'Dash'} exact path="/" componentPage={DashBoard} />
-                <RouteItem tab={1} title={'Browser'} exact path="/browser" componentPage={BrowserInfoDashBoard}/>
-                <RouteItem tab={2} title={'Camera'} exact path="/camera" componentPage={Camera} />
-                <RouteItem tab={3} title={'Bluetooth'} exact path="/bluetooth" componentPage={Bluetooth}/>
+                <RouteItem
+                  tab={0}
+                  title={'Dash'}
+                  exact path="/"
+                  componentPage={DashBoard}
+                />
+                <RouteItem
+                  tab={1}
+                  title={'Browser'}
+                  exact path="/browser"
+                  componentPage={BrowserInfoDashBoard}
+                />
     </RouteGroup>;
 
   }

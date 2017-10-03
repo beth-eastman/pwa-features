@@ -40,6 +40,14 @@ import FlatButton from 'material-ui/FlatButton';
 import Done from 'material-ui/svg-icons/action/done';
 import HighlightRemove from 'material-ui/svg-icons/action/highlight-off'
 
+import Dialog from 'material-ui/Dialog';
+
+// Web Features
+import Bluetooth from './Bluetooth';
+import Camera from './Camera';
+import Microphone from './Microphone';
+import Geolocation from './Geolocation';
+
 const Check = (<Done style={{color: 'green'}} />);
 const None = (<HighlightRemove style={{color: 'darkred'}}/>);
 
@@ -51,13 +59,72 @@ export interface Props {
 }
 
 export interface State {
-
+  featureDetails: any;
+  open: boolean,
 }
 
 export default class FeatureCard extends React.Component<Props, State> {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      featureDetails: null,
+      open: false,
+    }
+  }
+
+  /* Set feature details for dialog popup */
+  componentWillMount() {
+    this.changeFeatureDetails();
+  }
+
+  changeFeatureDetails = () => {
+    // this.props.featureDetails = "Details";
+    let featureDetails = null;
+
+    switch (this.props.featureName) {
+      case 'Bluetooth':
+        featureDetails = (<Bluetooth />);
+        break;
+      case 'Camera':
+        featureDetails = (<Camera />);
+        break;
+      case 'Microphone':
+        featureDetails = (<Microphone />);
+        break;
+      case 'Geolocation':
+        featureDetails = (<Geolocation />);
+        break;
+      default:
+        featureDetails = 'todo feature';
+        break;
+    }
+
+    this.setState({
+      featureDetails: featureDetails,
+    });
+  };
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
   // TODO: fix expandable function conditionally on feature enabled
   render() {
+    const actions = [
+      <FlatButton
+        label="Close"
+        primary={true}
+        // keyboardFocused={true}
+        onClick={this.handleClose}
+      />,
+    ];
+
     return(
         <Card style={{ margin: 20}}>
           <CardHeader
@@ -81,9 +148,18 @@ export default class FeatureCard extends React.Component<Props, State> {
               label={"Test " + this.props.featureName}
               disabled={!this.props.featureEnabled}
               style={{ margin: 10 }}
-              onTouchTap={() => { this.props.testFeatureFunction() }}
+              onTouchTap={ this.handleOpen }
             />
           </CardActions>
+          <Dialog
+            title={"Test " + this.props.featureName}
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+          >
+            { this.state.featureDetails }
+          </Dialog>
         </Card>
     );
   }

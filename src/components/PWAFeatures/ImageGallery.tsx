@@ -18,20 +18,20 @@ export interface State {
 export default class ImageGallery extends React.Component<Props, State> {
 
   responsiveColumns = () => {
-    const width = this.props.appPage.screen.width;
-    if (!width) {
-      return 1;
-    }
-    if (width > 1200) {
-      return 4;
-    }
-    if (width > 900) {
-      return 3;
-    }
-    if (width > 600) {
-      return 2;
-    }
-    return 1;
+    // const width = this.props.appPage.screen.width;
+    // if (!width) {
+    //   return 1;
+    // }
+    // if (width > 1200) {
+    //   return 4;
+    // }
+    // if (width > 900) {
+    //   return 3;
+    // }
+    // if (width > 600) {
+    //   return 2;
+    // }
+    return 2;
   }
 
   render() {
