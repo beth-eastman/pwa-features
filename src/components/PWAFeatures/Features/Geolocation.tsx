@@ -2,7 +2,6 @@ import * as React from 'react';
 
 // Components
 import { Card, CardText }from 'material-ui/Card';
-import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 
 import Map from 'material-ui/svg-icons/maps/my-location';
@@ -27,6 +26,7 @@ export default class Geolocation extends React.Component<Props, State> {
        };
    }
 
+  /* Get latitude and longitude */
   getGeolocation = () => {
     const that = this;
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -40,17 +40,18 @@ export default class Geolocation extends React.Component<Props, State> {
     });
   }
 
-  /* render the camera canvas */
+  /* render geolocation card */
   render() {
     return (
       <Card style={{ padding: 10, textAlign: 'center' }}>
         <Map />
-        <CardText>
-          {this.state.latitude && "Latitude: " + this.state.latitude }
-          <br />
-          {this.state.longitude && "Longitude: " + this.state.longitude }
-        </CardText>
-        <Divider />
+        { this.state.latitude &&
+          <CardText>
+            Latitude: {this.state.latitude}
+            <br />
+            Longitude: {this.state.longitude}
+          </CardText>
+        }
         <FlatButton
           label={"Get geolocation"}
           onTouchTap={this.getGeolocation}

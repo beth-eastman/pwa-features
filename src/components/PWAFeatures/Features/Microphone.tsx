@@ -2,7 +2,6 @@ import * as React from 'react';
 
 // Components
 import Card from 'material-ui/Card';
-import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 
 import MicrophoneIcon from 'material-ui/svg-icons/hardware/keyboard-voice';
@@ -58,7 +57,7 @@ export default class Microphone extends React.Component<Props, State> {
         <MicrophoneIcon />
         <br />
         <input type="file" accept="audio/*;capture=microphone" />
-        <Divider />
+        <br />
         <FlatButton label={"Record"} onTouchTap={this.testMicrophone} />
         <FlatButton label={"Stop Recording"} onTouchTap={this.stopMicrophone} />
       </Card>

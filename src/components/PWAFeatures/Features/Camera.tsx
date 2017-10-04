@@ -96,8 +96,10 @@ export default class Camera extends React.Component<any,any> {
   /* render the camera canvas */
   render() {
     let camera = null;
-
-    if (navigator.getUserMedia) {
+    const n : any = navigator;
+    const canAccess = (n.getUserMedia || n.webkitGetUserMedia ||
+            n.mozGetUserMedia || n.msGetUserMedia);
+    if (canAccess) {
       camera = (
         <div>
           <h2>Camera </h2>
@@ -120,7 +122,7 @@ export default class Camera extends React.Component<any,any> {
     return (
       <Card style={{ padding: 10, textAlign: 'center' }}>
         {camera}
-        {navigator.getUserMedia &&
+        {canAccess &&
           <div>
             <Divider />
             <ImageGallery appPage={this.props.appPage} images={images} />

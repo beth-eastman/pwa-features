@@ -6,6 +6,7 @@ import Geolocation from '../../components/PWAFeatures/Features/Geolocation';
 import Vibration from '../../components/PWAFeatures/Features/Vibration';
 import PushNotification from '../../components/PWAFeatures/Features/PushNotification';
 import FileAccess from '../../components/PWAFeatures/Features/FileAccess';
+import Battery from '../../components/PWAFeatures/Features/Battery';
 
 const n = navigator as any;
 const w = window as any;
@@ -74,7 +75,7 @@ const features : FeatureInterface[] = [
     featureName: 'Battery',
     featureDetails: 'Device Battery Stats',
     featureEnabled: batteryStatusCapable,
-    component: null,
+    component: <Battery />,
   },
   {
     id: 6,

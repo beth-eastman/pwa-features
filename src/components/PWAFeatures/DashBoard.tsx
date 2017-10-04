@@ -30,7 +30,7 @@
  * Original Software: robert.a.kayl.civ@mail.mil
  */
 import * as React from 'react';
-import {Card, CardText} from 'material-ui/Card';
+import { Card, CardText } from 'material-ui/Card';
 import FeatureCard from './FeatureCard';
 import features from '../../res/data/features';
 
