@@ -7,6 +7,7 @@ import Vibration from '../../components/PWAFeatures/Features/Vibration';
 import PushNotification from '../../components/PWAFeatures/Features/PushNotification';
 import FileAccess from '../../components/PWAFeatures/Features/FileAccess';
 import Battery from '../../components/PWAFeatures/Features/Battery';
+import Orientation from '../../components/PWAFeatures/Features/Orientation';
 
 const n = navigator as any;
 const w = window as any;
@@ -20,6 +21,7 @@ const blueToothCapable = 'bluetooth' in navigator;
 const pushNotificationsCapable = 'serviceWorker' in navigator;
 const vibrationCapable = navigator.vibrate ? true : false;
 const proximityCapable = false;
+const deviceOrientation = 'DeviceOrientationEvent' in window;
 const batteryStatusCapable = ('getBattery' in navigator ||
       ('battery' in navigator && 'Promise' in window)) !== false;
 const geolocation = navigator.geolocation ? true : false;
@@ -88,8 +90,8 @@ const features : FeatureInterface[] = [
     id: 7,
     featureName: 'Orientation',
     featureDetails: 'Device orientation',
-    featureEnabled: false,
-    component: null,
+    featureEnabled: deviceOrientation,
+    component: <Orientation />,
   },
   {
     id: 8,

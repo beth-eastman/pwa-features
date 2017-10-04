@@ -18,13 +18,13 @@ export interface State {
 export default class Geolocation extends React.Component<Props, State> {
 
   constructor(props) {
-       super(props);
+    super(props);
 
-       this.state = {
-         latitude: null,
-         longitude: null,
-       };
-   }
+    this.state = {
+      latitude: null,
+      longitude: null,
+    };
+  }
 
   /* Get latitude and longitude */
   getGeolocation = () => {
@@ -34,9 +34,6 @@ export default class Geolocation extends React.Component<Props, State> {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       });
-
-      console.log(that.state);
-      console.log(position.coords.latitude, position.coords.longitude);
     });
   }
 
@@ -45,6 +42,7 @@ export default class Geolocation extends React.Component<Props, State> {
     return (
       <Card style={{ padding: 10, textAlign: 'center' }}>
         <Map />
+        <br />
         { this.state.latitude &&
           <CardText>
             Latitude: {this.state.latitude}
