@@ -60,14 +60,16 @@ export default class Motions extends React.Component<Props, State> {
     const y = acceleration.y && acceleration.y.toFixed(3);
     const z = acceleration.z && acceleration.z.toFixed(3);
 
-    if ('withoutgravity') {
-      this.setState({
-        accelerationNoGravity: [x, y, z]
-      });
-    } else {
-      this.setState({
-        accelerationWithGravity: [x, y, z]
-      });
+    if (x || y || z) {
+      if (type === 'withoutgravity') {
+        this.setState({
+          accelerationNoGravity: [x, y, z]
+        });
+      } else {
+        this.setState({
+          accelerationWithGravity: [x, y, z]
+        });
+      }
     }
   }
 
@@ -118,6 +120,8 @@ export default class Motions extends React.Component<Props, State> {
   }
 
   deviceMotionEventHandler(event) {
+    // console.log(event.acceleration);
+    console.log(event.accelerationIncludingGravity);
     this.getAcceleration(event.acceleration, 'withoutgravity');
     this.getAcceleration(event.accelerationIncludingGravity, 'withgravity');
     this.getRotation(event.rotationRate);

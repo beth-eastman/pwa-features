@@ -28,7 +28,7 @@ const batteryStatusCapable = ('getBattery' in navigator ||
 const geolocation = navigator.geolocation ? true : false;
 const fileAccessCapable = w.File !== undefined;
 const vrCapable = false;
-const threeDMotionCapable = true;
+const threeDMotionCapable = 'Accelerometer' in window || 'Gyroscope' in window || 'DeviceMotionEvent' in window;
 
 export interface FeatureInterface {
   id: number,

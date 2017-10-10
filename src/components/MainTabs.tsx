@@ -58,16 +58,16 @@ export default class MainTabs extends React.Component<any,any> {
 
   handleChange = (value) => {
     const {appPage} = this.props;
-    console.log(value);
+    // console.log(value);
     appPage.selectTab(null,value);
   }
 
   handleSwipeChange = (v,v2) => {
-    console.log(v,v2);
+    // console.log(v,v2);
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const defaultProps = {...this.props,basePath: '/',mainTabs: undefined};
     const tabs = typeof this.props.tempTabs !== 'undefined' ? this.props.tempTabs : this.props.mainTabs;
     return (

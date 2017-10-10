@@ -102,7 +102,7 @@ export default class Main extends React.Component<Props, State>{
   }
 
   handleSetTabs = (tempTabs: JSX.Element[]) => {
-    console.log(tempTabs);
+    // console.log(tempTabs);
     this.setState({
       tempTabs
     });
@@ -122,7 +122,7 @@ export default class Main extends React.Component<Props, State>{
     }
   }
   handleDefaultTabs = (mainTabs: JSX.Element[]) => {
-    console.log(mainTabs);
+    // console.log(mainTabs);
     this.setState({
       mainTabs
     });
