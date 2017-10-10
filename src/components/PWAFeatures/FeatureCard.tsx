@@ -79,7 +79,6 @@ export default class FeatureCard extends React.Component<Props, State> {
       <FlatButton
         label="Close"
         primary={true}
-        // keyboardFocused={true}
         onClick={this.handleClose}
       />,
     ];

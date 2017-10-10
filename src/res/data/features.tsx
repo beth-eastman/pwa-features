@@ -8,6 +8,7 @@ import PushNotification from '../../components/PWAFeatures/Features/PushNotifica
 import FileAccess from '../../components/PWAFeatures/Features/FileAccess';
 import Battery from '../../components/PWAFeatures/Features/Battery';
 import Orientation from '../../components/PWAFeatures/Features/Orientation';
+import Motions from '../../components/PWAFeatures/Features/Motions';
 
 const n = navigator as any;
 const w = window as any;
@@ -27,6 +28,7 @@ const batteryStatusCapable = ('getBattery' in navigator ||
 const geolocation = navigator.geolocation ? true : false;
 const fileAccessCapable = w.File !== undefined;
 const vrCapable = false;
+const threeDMotionCapable = true;
 
 export interface FeatureInterface {
   id: number,
@@ -81,41 +83,48 @@ const features : FeatureInterface[] = [
   },
   {
     id: 6,
+    featureName: '3D Motions',
+    featureDetails: 'Get 3D Motions Data',
+    featureEnabled: threeDMotionCapable,
+    component: <Motions />,
+  },
+  {
+    id: 7,
     featureName: 'Vibration',
     featureDetails: 'Device vibration',
     featureEnabled: vibrationCapable,
     component: <Vibration />,
   },
   {
-    id: 7,
+    id: 8,
     featureName: 'Orientation',
     featureDetails: 'Device orientation',
     featureEnabled: deviceOrientation,
     component: <Orientation />,
   },
   {
-    id: 8,
+    id: 9,
     featureName: 'Device Motions',
     featureDetails: 'Device 3D motions',
     featureEnabled: false,
     component: null,
   },
   {
-    id: 9,
+    id: 10,
     featureName: 'Geolocation',
     featureDetails: 'Get device location',
     featureEnabled: geolocation,
     component: <Geolocation />,
   },
   {
-    id: 10,
+    id: 11,
     featureName: 'File Access',
     featureDetails: 'Access the device local files',
     featureEnabled: fileAccessCapable,
     component: <FileAccess />,
   },
   {
-    id: 11,
+    id: 12,
     featureName: 'Virtual Reality',
     featureDetails: 'Use Virtual Reality Device',
     featureEnabled: vrCapable,
