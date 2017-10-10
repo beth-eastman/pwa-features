@@ -35,7 +35,6 @@ import { Card, CardText } from 'material-ui/Card';
 export default class BrowserInfoDashBoard extends React.Component<{}, {}> {
 
   render() {
-    console.log(navigator);
     return (
       <div >
         <Card style={{ margin: 20}}>

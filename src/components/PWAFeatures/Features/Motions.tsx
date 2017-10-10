@@ -3,7 +3,6 @@ import * as React from 'react';
 
 // Components
 import { Card, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 
 // Icons
 import DeviceIcon from 'material-ui/svg-icons/device/screen-rotation';
@@ -120,8 +119,6 @@ export default class Motions extends React.Component<Props, State> {
   }
 
   deviceMotionEventHandler(event) {
-    // console.log(event.acceleration);
-    // console.log(event.accelerationIncludingGravity);
     this.getAcceleration(event.acceleration, 'withoutgravity');
     this.getAcceleration(event.accelerationIncludingGravity, 'withgravity');
     this.getRotation(event.rotationRate);
@@ -227,9 +224,6 @@ export default class Motions extends React.Component<Props, State> {
           }
           <br />
         </CardText>
-        <FlatButton
-          label="Motions"
-        />
       </Card>
     );
   }

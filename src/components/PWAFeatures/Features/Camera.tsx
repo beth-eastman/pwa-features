@@ -27,10 +27,11 @@ export default class Camera extends React.Component<any,any> {
 
       this.testCamera = this.testCamera.bind(this);
       this.stopCamera = this.stopCamera.bind(this);
+      this.takePhoto = this.takePhoto.bind(this);
    }
 
   /* test the camera */
-  testCamera = () => {
+  testCamera() {
       // Prefer camera resolution nearest to 1280x720.
       let constraints = { audio: true, video: { width: 1280, height: 720 } };
 
@@ -51,7 +52,7 @@ export default class Camera extends React.Component<any,any> {
   }
 
   /* stop current video stream */
-  stopCamera = () => {
+  stopCamera() {
     if (this.state.localMediaStream) {
       let video = document.querySelector('video');
       let stream = video.srcObject;
@@ -70,22 +71,23 @@ export default class Camera extends React.Component<any,any> {
   };
 
   /* Take a Photo */
-  takePhoto = () => {
+  takePhoto() {
     let videoObj = { video: true, audio: true };
     const that = this;
 
     if (navigator.getUserMedia && this.state.localMediaStream) {
-      navigator.getUserMedia(videoObj, function(stream) {
-              var video = document.getElementById("video");
-              var canvas : any = document.getElementById("canvas");
-              var context = canvas.getContext("2d");
-              context.drawImage(video, 0, 0, 500, 300);
-              const data = canvas.toDataURL("image/png");
-              images.push(data);
-              that.setState({ photos: [] });
-           }, function(error) {
-               console.error("Video capture error: ", error);
-           });
+      navigator.getUserMedia(videoObj,
+        function(stream) {
+            var video = document.getElementById("video");
+            var canvas : any = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            context.drawImage(video, 0, 0, 500, 300);
+            const data = canvas.toDataURL("image/png");
+            images.push(data);
+            that.setState({ photos: [] });
+         }, function(error) {
+             console.error("Video capture error: ", error);
+         });
 
     } else {
       this.setState({ cameraOpen: true });
