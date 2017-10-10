@@ -121,7 +121,7 @@ export default class Motions extends React.Component<Props, State> {
 
   deviceMotionEventHandler(event) {
     // console.log(event.acceleration);
-    console.log(event.accelerationIncludingGravity);
+    // console.log(event.accelerationIncludingGravity);
     this.getAcceleration(event.acceleration, 'withoutgravity');
     this.getAcceleration(event.accelerationIncludingGravity, 'withgravity');
     this.getRotation(event.rotationRate);
