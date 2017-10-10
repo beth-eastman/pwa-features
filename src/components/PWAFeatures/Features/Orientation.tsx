@@ -58,11 +58,14 @@ export default class Orientation extends React.Component<Props, State> {
         <br />
         { (this.state.alpha || this.state.beta || this.state.gamma) &&
           <CardText>
-            Alpha: {this.state.alpha}
+            Alpha:<br />
+            {this.state.alpha ? this.state.alpha : 'Not Available'}
             <br />
-            Beta: {this.state.beta}
+            Beta:<br />
+            {this.state.beta ? this.state.beta : 'Not Available'}
             <br />
-            Gamma: {this.state.gamma}
+            Gamma:<br />
+            {this.state.gamma ? this.state.gamma : 'Not Available'}
           </CardText>
         }
         <FlatButton
