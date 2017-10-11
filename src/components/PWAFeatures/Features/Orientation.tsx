@@ -30,6 +30,7 @@ export default class Orientation extends React.Component<Props, State> {
     }
 
     this.orientation = this.orientation.bind(this);
+    this.getOrientation = this.getOrientation.bind(this);
   }
 
   /* Callback function for event listeners to get orientation */
@@ -42,9 +43,9 @@ export default class Orientation extends React.Component<Props, State> {
   }
 
   /* add event listener for the device's orientation */
-  getOrienation = () => {
+  getOrientation() {
     window.addEventListener('deviceorientation', this.orientation);
-  };
+  }
 
   /* When component unmounts, remove window event listener */
   componentWillUnmount() {
@@ -70,7 +71,7 @@ export default class Orientation extends React.Component<Props, State> {
         }
         <FlatButton
           label="Get Orientation Info"
-          onTouchTap={this.getOrienation}
+          onTouchTap={this.getOrientation}
         />
       </Card>
     );

@@ -57,7 +57,6 @@ export default class Bluetooth extends React.Component<Props, State> {
       console.log('Paired: ' + device.paired);
     })
     .catch(function(error) {
-      console.log("Something went wrong. " + error);
       that.setState({
         errorMessage: error.toString(),
       });
@@ -71,15 +70,17 @@ export default class Bluetooth extends React.Component<Props, State> {
       <Card style={{ margin: 20, padding: 10, textAlign: 'center' }}>
           <BluetoothIcon />
           <br />
-          { this.state.batteryPercentage &&
+          {
+            this.state.batteryPercentage &&
             <CardText>
             Device Battery Percentage is: <br />
             {this.state.batteryPercentage}<br />
             </CardText>
           }
-          { this.state.errorMessage &&
+          {
+            this.state.errorMessage &&
             <CardText>
-            {this.state.errorMessage}
+              {this.state.errorMessage}
             </CardText>
           }
           <FlatButton

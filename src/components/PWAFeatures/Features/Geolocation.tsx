@@ -3,6 +3,7 @@ import * as React from 'react';
 // Components
 import { Card, CardText }from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import CirclularProgress from 'material-ui/CircularProgress';
 
 import Map from 'material-ui/svg-icons/maps/my-location';
 
@@ -13,6 +14,7 @@ export interface Props {
 export interface State {
   latitude: number,
   longitude: number,
+  progress: boolean, // show the progress bar when geolocation loading
 }
 
 export default class Geolocation extends React.Component<Props, State> {
@@ -23,16 +25,26 @@ export default class Geolocation extends React.Component<Props, State> {
     this.state = {
       latitude: null,
       longitude: null,
+      progress: false,
     };
+
+    this.getGeolocation = this.getGeolocation.bind(this);
   }
 
   /* Get latitude and longitude */
-  getGeolocation = () => {
+  getGeolocation() {
     const that = this;
+    // start the circular progress bar
+    this.setState({
+      progress: true,
+    });
+
+    // get the geolocation data & remove circular progress
     navigator.geolocation.getCurrentPosition(function(position) {
       that.setState({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
+        progress: false,
       });
     });
   }
@@ -43,6 +55,13 @@ export default class Geolocation extends React.Component<Props, State> {
       <Card style={{ padding: 10, textAlign: 'center' }}>
         <Map />
         <br />
+        {
+          this.state.progress &&
+          <div style={{ padding: 10 }}>
+            <CirclularProgress />
+            <br />
+          </div>
+        }
         { this.state.latitude &&
           <CardText>
             Latitude: {this.state.latitude}
