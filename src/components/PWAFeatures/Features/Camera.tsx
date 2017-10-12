@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 // Components
-import Card from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import ImageGallery from './ImageGallery';
@@ -68,7 +67,7 @@ export default class Camera extends React.Component<any,any> {
     } else {
       console.log('No video is available')
     }
-  };
+  }
 
   /* Take a Photo */
   takePhoto() {
@@ -98,11 +97,7 @@ export default class Camera extends React.Component<any,any> {
   /* render the camera canvas */
   render() {
     let camera = null;
-    const n : any = navigator;
-    const canAccess = (n.getUserMedia || n.webkitGetUserMedia ||
-            n.mozGetUserMedia || n.msGetUserMedia);
-    if (canAccess) {
-      camera = (
+    camera = (
         <div>
           <h2>Camera </h2>
             <FlatButton label={"Open Camera"} onTouchTap={this.testCamera} icon={<VideoIcon />} />
@@ -113,27 +108,17 @@ export default class Camera extends React.Component<any,any> {
           <br />
         </div>
       );
-    } else {
-      camera = (
-        <h3>
-          Camera not available in this browser, please upgrade.
-        </h3>
-      );
-    }
 
     return (
-      <Card style={{ padding: 10, textAlign: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
         {camera}
-        {canAccess &&
-          <div>
-            <Divider />
-            <ImageGallery appPage={this.props.appPage} images={images} />
-            <SnackBar
-              message="Please open the camera to take a photo"  open={this.state.cameraOpen}
-            />
-          </div>
-        }
-      </Card>
+        <Divider />
+        <ImageGallery appPage={this.props.appPage} images={images} />
+        <SnackBar
+          message="Please open the camera to take a photo"
+          open={this.state.cameraOpen}
+        />
+      </div>
     );
   }
 }

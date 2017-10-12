@@ -1,17 +1,16 @@
 import * as React from 'react';
 
 // Components
-import { Card, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 // Icons
 import BatteryIcon from 'material-ui/svg-icons/device/battery-charging-full';
 
 export interface State {
-  batteryCharging: boolean,
-  batteryLevel: number,
-  batteryChargingTime: number,
-  batteryDischargingTime: number,
+  batteryCharging: boolean;
+  batteryLevel: number;
+  batteryChargingTime: number;
+  batteryDischargingTime: number;
 }
 
 export default class Battery extends React.Component<{}, State> {
@@ -43,23 +42,23 @@ export default class Battery extends React.Component<{}, State> {
 
   render() {
     return (
-      <Card style={{ padding: 10, textAlign: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
         <BatteryIcon />
         <br />
         {
           this.state.batteryCharging !== null &&
-          <CardText>
+          <div>
               Battery Charging: {this.state.batteryCharging + ''}<br />
               Battery Level: {this.state.batteryLevel}%<br />
               Battery Charging Time: {this.state.batteryChargingTime}<br />
               Battery Discharging Time: {this.state.batteryDischargingTime}<br />
-          </CardText>
+          </div>
         }
         <FlatButton
           label="Battery Status"
           onTouchTap={this.getBatteryStatus}
         />
-      </Card>
+      </div>
     );
   }
 }

@@ -14,10 +14,10 @@ const n = navigator as any;
 const w = window as any;
 
 /* check all features for availability */
-const cameraCapable = (n.getUserMedia || n.webkitGetUserMedia ||
-  n.mozGetUserMedia || n.msGetUserMedia) !== false;
-const michrophoneCapable = (n.getUserMedia || n.webkitGetUserMedia ||
-  n.mozGetUserMedia || n.msGetUserMedia) !== false;
+const cameraCapable = !!(n.getUserMediad || n.webkitGetUserMedia ||
+  n.mozGetUserMedia || n.msGetUserMedia);
+const microphoneCapable = !!(n.getUserMedia || n.webkitGetUserMedia ||
+  n.mozGetUserMedia || n.msGetUserMedia);
 const blueToothCapable = 'bluetooth' in navigator;
 const pushNotificationsCapable = 'serviceWorker' in navigator;
 const vibrationCapable = navigator.vibrate ? true : false;
@@ -50,13 +50,13 @@ const features : FeatureInterface[] = [
     id: 1,
     featureName: 'Microphone',
     featureDetails: 'Use Device Microphone',
-    featureEnabled: michrophoneCapable,
+    featureEnabled: microphoneCapable,
     component: <Microphone />,
   },
   {
     id: 2,
     featureName: 'Bluetooth',
-    featureDetails: 'Use Bluetooth Low Energy connected to Device',
+    featureDetails: 'Use Bluetooth Low Energy connected to Device. (Chrome Support Only)',
     featureEnabled: blueToothCapable,
     component: <Bluetooth />,
   },

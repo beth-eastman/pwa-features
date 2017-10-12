@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 // Components
-import Card from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 // Icons
@@ -16,13 +15,13 @@ export default class PushNotification extends React.Component<{}, {}> {
   render() {
 
     return (
-      <Card style={{ padding: 10, textAlign: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
         <br />
         <FlatButton
           label="Send Push Notification"
           onTouchTap={this.sendNotification}
         />
-      </Card>
+      </div>
     );
   }
 }

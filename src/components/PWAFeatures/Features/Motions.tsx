@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 // Components
-import { Card, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 // Icons
 import DeviceIcon from 'material-ui/svg-icons/device/screen-rotation';
@@ -12,7 +12,8 @@ export interface Props {
 }
 
 export interface State {
-  accelerationNoGravity: number[],
+  open: boolean;
+  accelerationNoGravity: number[];
   accelerationWithGravity: number[];
   rotation: number[];
   interval: number;
@@ -28,6 +29,7 @@ export default class Motions extends React.Component<Props, State> {
     super(props);
 
     this.state = {
+      open: false,
       accelerationNoGravity: null,
       accelerationWithGravity: null,
       rotation: null,
@@ -45,6 +47,7 @@ export default class Motions extends React.Component<Props, State> {
     this.getAcceleration = this.getAcceleration.bind(this);
     this.getRotation = this.getRotation.bind(this);
     this.getIntervalRate = this.getIntervalRate.bind(this);
+    this.getMotions = this.getMotions.bind(this);
 
     // functions to be shared between addEventListener & removeEventListener
     this.accelerationEventHandler = this.accelerationEventHandler.bind(this);
@@ -126,7 +129,7 @@ export default class Motions extends React.Component<Props, State> {
   }
 
   /* Set up event listeners for device motions when component mounts */
-  componentWillMount() {
+  getMotions() {
     if ('Accelerometer' in window && 'Gyroscope' in window) {
       // start accelerometer
       Accelerometer.addEventListener(
@@ -155,6 +158,12 @@ export default class Motions extends React.Component<Props, State> {
         this.deviceMotionEventHandler,
         false
       );
+    }
+
+    if (!this.state.open) {
+      this.setState({
+        open: true,
+      });
     }
   }
 
@@ -195,36 +204,43 @@ export default class Motions extends React.Component<Props, State> {
   render() {
     const notAvailable = 'Not Available';
     return (
-      <Card style={{ padding: 10, textAlign: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
         <DeviceIcon />
         <br />
-        <CardText>
-          <b>Acceleration (No Gravity):</b><br />
-          {this.state.accelerationNoGravity ?
-            this.state.accelerationNoGravity.toString() :
-            notAvailable
+
+          { this.state.open &&
+            <div>
+              <b>Acceleration (No Gravity):</b><br />
+              {this.state.accelerationNoGravity ?
+                this.state.accelerationNoGravity.toString() :
+                notAvailable
+              }
+              <br />
+              <b>Acceleration (W/ Gravity):</b><br />
+              {this.state.accelerationWithGravity ?
+                this.state.accelerationWithGravity.toString() :
+                notAvailable
+              }
+              <br />
+              <b>Rotation:</b><br />
+              {this.state.rotation ?
+                this.state.rotation.toString() :
+                notAvailable
+              }
+              <br />
+              <b>Interval:</b><br />
+              {this.state.interval ?
+                this.state.interval :
+                notAvailable
+              }
+            </div>
           }
           <br />
-          <b>Acceleration (W/ Gravity):</b><br />
-          {this.state.accelerationWithGravity ?
-            this.state.accelerationWithGravity.toString() :
-            notAvailable
-          }
-          <br />
-          <b>Rotation:</b><br />
-          {this.state.rotation ?
-            this.state.rotation.toString() :
-            notAvailable
-          }
-          <br />
-          <b>Interval:</b><br />
-          {this.state.interval ?
-            this.state.interval :
-            notAvailable
-          }
-          <br />
-        </CardText>
-      </Card>
+          <FlatButton
+            label="Get Motion Data"
+            onTouchTap={this.getMotions}
+          />
+      </div>
     );
   }
 }

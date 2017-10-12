@@ -103,9 +103,9 @@ export default class FeatureCard extends React.Component<Props, State> {
           <Divider />
           <CardActions expandable={true}>
             <FlatButton
+              style={{ margin: 10 }}
               label={"Test " + this.props.feature.featureName}
               disabled={!this.props.feature.featureEnabled}
-              style={{ margin: 10 }}
               onTouchTap={ this.handleOpen }
             />
           </CardActions>

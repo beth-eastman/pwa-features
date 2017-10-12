@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { Card, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import BluetoothIcon from 'material-ui/svg-icons/device/bluetooth';
 
@@ -9,10 +8,10 @@ export interface Props {
 }
 
 export interface State {
-  batteryPercentage: number,
-  bluetoothCapable: boolean,
-  bluetoothConnected: boolean,
-  errorMessage: string,
+  batteryPercentage: number;
+  bluetoothCapable: boolean;
+  bluetoothConnected: boolean;
+  errorMessage: string;
 }
 
 export default class Bluetooth extends React.Component<Props, State> {
@@ -67,28 +66,28 @@ export default class Bluetooth extends React.Component<Props, State> {
   render() {
 
     return (
-      <Card style={{ margin: 20, padding: 10, textAlign: 'center' }}>
-          <BluetoothIcon />
+      <div style={{ textAlign: 'center' }}>
+          <BluetoothIcon/>
           <br />
           {
             this.state.batteryPercentage &&
-            <CardText>
+            <div>
             Device Battery Percentage is: <br />
             {this.state.batteryPercentage}<br />
-            </CardText>
+            </div>
           }
           {
             this.state.errorMessage &&
-            <CardText>
+            <div>
               {this.state.errorMessage}
-            </CardText>
+            </div>
           }
           <FlatButton
             label="Connect"
             disabled={!this.state.bluetoothCapable}
             onTouchTap={() => {this.connect()}}
           />
-      </Card>
+      </div>
     );
   }
 }

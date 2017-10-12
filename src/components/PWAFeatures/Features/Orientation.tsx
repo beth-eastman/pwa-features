@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 // Components
-import { Card, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 // Icons
@@ -12,9 +11,10 @@ export interface Props {
 }
 
 export interface State {
-  alpha: number,
-  beta: number,
-  gamma: number,
+  alpha: number;
+  beta: number;
+  gamma: number;
+  open: boolean; // show orientation values when user starts geolocation service
 }
 
 
@@ -27,6 +27,7 @@ export default class Orientation extends React.Component<Props, State> {
       alpha: null,
       beta: null,
       gamma: null,
+      open: false,
     }
 
     this.orientation = this.orientation.bind(this);
@@ -39,6 +40,7 @@ export default class Orientation extends React.Component<Props, State> {
       alpha: event.alpha,
       beta: event.beta,
       gamma: event.gamma,
+      open: true,
     });
   }
 
@@ -54,11 +56,11 @@ export default class Orientation extends React.Component<Props, State> {
 
   render() {
     return (
-      <Card style={{ padding: 10, textAlign: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
         <DeviceRotation />
         <br />
-        { (this.state.alpha || this.state.beta || this.state.gamma) &&
-          <CardText>
+        { this.state.open &&
+          <div className="alpha-beta-gamma">
             Alpha:<br />
             {this.state.alpha ? this.state.alpha : 'Not Available'}
             <br />
@@ -67,13 +69,13 @@ export default class Orientation extends React.Component<Props, State> {
             <br />
             Gamma:<br />
             {this.state.gamma ? this.state.gamma : 'Not Available'}
-          </CardText>
+          </div>
         }
         <FlatButton
           label="Get Orientation Info"
           onTouchTap={this.getOrientation}
         />
-      </Card>
+      </div>
     );
   }
 }

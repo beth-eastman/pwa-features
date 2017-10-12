@@ -3,3 +3,4 @@ cordova/platforms/
 cordova/plugins/
 .DS_Store
 build/
+coverage/

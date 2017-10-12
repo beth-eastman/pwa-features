@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 // Components
-import { Card, CardText }from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import CirclularProgress from 'material-ui/CircularProgress';
 
@@ -12,9 +11,10 @@ export interface Props {
 }
 
 export interface State {
-  latitude: number,
-  longitude: number,
-  progress: boolean, // show the progress bar when geolocation loading
+  latitude: number;
+  longitude: number;
+  progress: boolean;    // show the progress bar when geolocation loading
+  errorMessage: string; // error message if feature fails
 }
 
 export default class Geolocation extends React.Component<Props, State> {
@@ -26,9 +26,11 @@ export default class Geolocation extends React.Component<Props, State> {
       latitude: null,
       longitude: null,
       progress: false,
+      errorMessage: null,
     };
 
     this.getGeolocation = this.getGeolocation.bind(this);
+    this.showError = this.showError.bind(this);
   }
 
   /* Get latitude and longitude */
@@ -45,35 +47,66 @@ export default class Geolocation extends React.Component<Props, State> {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
         progress: false,
+        errorMessage: null,
       });
-    });
+    }, this.showError);
   }
+
+  /* Show error if geolocation fails */
+  showError(error) {
+    let errorMessage : string;
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            errorMessage = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            errorMessage = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            errorMessage = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            errorMessage = "An unknown error occurred."
+            break;
+    }
+    this.setState({
+      progress: null,
+      errorMessage: errorMessage,
+    });
+}
 
   /* render geolocation card */
   render() {
     return (
-      <Card style={{ padding: 10, textAlign: 'center' }}>
+      <div style={{ padding: 10, textAlign: 'center' }}>
         <Map />
         <br />
-        {
+        { // show progress bar
           this.state.progress &&
           <div style={{ padding: 10 }}>
             <CirclularProgress />
             <br />
           </div>
         }
-        { this.state.latitude &&
-          <CardText>
+        { // show error message
+          this.state.errorMessage &&
+          <div className="errorMessage">
+          Error: {this.state.errorMessage}
+          </div>
+        }
+        { // show geolocation info
+          this.state.latitude &&
+          <div className="lat-long">
             Latitude: {this.state.latitude}
             <br />
             Longitude: {this.state.longitude}
-          </CardText>
+          </div>
         }
         <FlatButton
           label={"Get geolocation"}
           onTouchTap={this.getGeolocation}
         />
-      </Card>
+      </div>
     );
   }
 }
