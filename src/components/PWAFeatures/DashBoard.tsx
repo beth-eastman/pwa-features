@@ -52,7 +52,7 @@ export default class DashBoard extends React.Component<Props, State>{
       <div>
         <Card style={{ margin: 20}}>
           <CardText>
-            <h1 style={{textAlign: 'center'}}>Feature Dashboard</h1>
+            <h1 style={{ textAlign: 'center' }}>Feature Dashboard</h1>
           </CardText>
         </Card>
         {

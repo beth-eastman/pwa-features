@@ -39,6 +39,13 @@ describe('<Motions />', () => {
     expect(wrap.state().interval).toEqual(null);
   });
 
+  it('Get motion data should getMotions()', () => {
+    const wrap = wrapper();
+    expect(wrap.state().open).toEqual(false);
+    wrap.find('FlatButton').simulate('touchTap');
+    expect(wrap.state().open).toEqual(true);
+  });
+
   it('getRotation() should set values correctly', () => {
     const wrap = wrapper();
     const badValues = {alpha: null, beta: null, gamma: null};
@@ -50,7 +57,7 @@ describe('<Motions />', () => {
     expect(wrap.state().rotation).toEqual([0, 1, 2]);
   });
 
-  it('should set state.interval to value passed in', () => {
+  it('getIntervalRate() should set state.interval to value passed in', () => {
     const wrap = wrapper();
     wrap.instance().getIntervalRate(2);
     expect(wrap.state().interval).toEqual(2);

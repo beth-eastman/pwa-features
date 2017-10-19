@@ -10,7 +10,8 @@ export default class Vibration extends React.Component<{}, {}> {
 
   /* Use browser navigator to vibrate device */
   vibrateDevice = () => {
-    navigator.vibrate(200);
+    // returns true when device vibrates, false otherwise
+    return navigator.vibrate(200);
   };
 
   render() {

@@ -2,7 +2,7 @@
  * Testing the Vibration component
  */
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Vibration from '../PWAFeatures/Features/Vibration';
 import * as injectTapEventPlugin from 'react-tap-event-plugin';
@@ -10,27 +10,41 @@ import * as injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 // mock global navigator Vibration objects
-const mockVibration = {
-  getCurrentPosition: jest.fn(),
-  watchPosition: jest.fn()
-};
+
 
 const g = global as any;
-g.navigator.Vibration = mockVibration;
+g.navigator.vibrate = jest.fn().mockReturnValue(true);
 
 // set up component
-const renderComponent = (props = {}) => mount(
+const wrapper = () => shallow(
   <MuiThemeProvider>
     <Vibration />
   </MuiThemeProvider>
-);
+).dive();
 
 // tests
 describe('<Vibration />', () => {
 
   it('should render an <div> tag', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.find('div').length).toEqual(2);
+    const wrap = wrapper();
+    expect(wrap.find('div').length).toEqual(1);
   });
+
+  it('vibrateDevice() should vibrate the device', () => {
+    const wrap = wrapper();
+    expect(wrap.instance().vibrateDevice()).toEqual(true);
+  });
+
+  it('vibrateDevice() returns false if device does not vibrate', () => {
+    const wrap = wrapper();
+    g.navigator.vibrate.mockReturnValueOnce(false);
+    expect(wrap.instance().vibrateDevice()).toEqual(false);
+  });
+
+  it('Vibrate <FlatButton /> should vibrate when selected', () => {
+    const wrap = wrapper();
+    wrap.find('FlatButton').simulate('touchTap');
+    expect(wrap.instance().vibrateDevice()).toHaveBeenCalled;
+  })
 
 });
