@@ -71,14 +71,14 @@ export default class Bluetooth extends React.Component<Props, State> {
           <br />
           {
             this.state.batteryPercentage &&
-            <div>
+            <div className="batteryPercentage">
             Device Battery Percentage is: <br />
             {this.state.batteryPercentage}<br />
             </div>
           }
           {
             this.state.errorMessage &&
-            <div>
+            <div className="errorMessage">
               {this.state.errorMessage}
             </div>
           }

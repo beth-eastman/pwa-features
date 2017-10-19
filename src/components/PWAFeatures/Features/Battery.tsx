@@ -29,14 +29,13 @@ export default class Battery extends React.Component<{}, State> {
   getBatteryStatus = () => {
     var that = this;
     var n : any = navigator;
-    n.getBattery().then(function(battery) {
+    return n.getBattery().then(function(battery) {
       that.setState({
         batteryCharging: battery.charging,
         batteryLevel: battery.level * 100,
         batteryChargingTime: battery.chargingTime,
         batteryDischargingTime: battery.dischargingTime,
       });
-      console.log(that.state);
     });
   };
 
@@ -47,7 +46,7 @@ export default class Battery extends React.Component<{}, State> {
         <br />
         {
           this.state.batteryCharging !== null &&
-          <div>
+          <div className="battery">
               Battery Charging: {this.state.batteryCharging + ''}<br />
               Battery Level: {this.state.batteryLevel}%<br />
               Battery Charging Time: {this.state.batteryChargingTime}<br />

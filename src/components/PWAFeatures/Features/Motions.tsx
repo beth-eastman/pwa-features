@@ -58,9 +58,9 @@ export default class Motions extends React.Component<Props, State> {
 
   /* Get accelerometer x, y, and z coordinates */
   getAcceleration(acceleration, type) {
-    const x = acceleration.x && acceleration.x.toFixed(3);
-    const y = acceleration.y && acceleration.y.toFixed(3);
-    const z = acceleration.z && acceleration.z.toFixed(3);
+    const x = acceleration.x && acceleration.x.toFixed(3) / 1;
+    const y = acceleration.y && acceleration.y.toFixed(3) / 1;
+    const z = acceleration.z && acceleration.z.toFixed(3) / 1;
 
     if (x || y || z) {
       if (type === 'withoutgravity') {
@@ -83,9 +83,9 @@ export default class Motions extends React.Component<Props, State> {
    * gamma: rate at which the device is rotating about its Y axis; side to side.
    */
   getRotation(rotation) {
-    const alpha = rotation.alpha && rotation.alpha.toFixed(3);
-    const beta = rotation.beta && rotation.beta.toFixed(3);
-    const gamma = rotation.gamma && rotation.gamma.toFixed(3);
+    const alpha : number = rotation.alpha && rotation.alpha.toFixed(3) / 1;
+    const beta : number = rotation.beta && rotation.beta.toFixed(3) / 1;
+    const gamma : number = rotation.gamma && rotation.gamma.toFixed(3) / 1;
 
     // TODO: FIX keeps getting called after component dismounts
     if (alpha || beta || gamma) {

@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
-import { AppPageInterface } from '../../Main';
 
 // Icons
 import DownloadIcon from 'material-ui/svg-icons/file/file-download';
 
 export interface Props {
-  appPage: AppPageInterface;
   images: any;
 }
 

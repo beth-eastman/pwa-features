@@ -59,7 +59,8 @@ export default class Orientation extends React.Component<Props, State> {
       <div style={{ textAlign: 'center' }}>
         <DeviceRotation />
         <br />
-        { this.state.open &&
+        {
+          this.state.open &&
           <div className="alpha-beta-gamma">
             Alpha:<br />
             {this.state.alpha ? this.state.alpha : 'Not Available'}

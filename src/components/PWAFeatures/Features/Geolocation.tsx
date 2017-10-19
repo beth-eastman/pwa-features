@@ -57,16 +57,16 @@ export default class Geolocation extends React.Component<Props, State> {
     let errorMessage : string;
     switch(error.code) {
         case error.PERMISSION_DENIED:
-            errorMessage = "User denied the request for Geolocation."
+            errorMessage = "User denied the request for Geolocation.";
             break;
         case error.POSITION_UNAVAILABLE:
-            errorMessage = "Location information is unavailable."
+            errorMessage = "Location information is unavailable.";
             break;
         case error.TIMEOUT:
-            errorMessage = "The request to get user location timed out."
+            errorMessage = "The request to get user location timed out.";
             break;
         case error.UNKNOWN_ERROR:
-            errorMessage = "An unknown error occurred."
+            errorMessage = "An unknown error occurred.";
             break;
     }
     this.setState({
@@ -83,7 +83,7 @@ export default class Geolocation extends React.Component<Props, State> {
         <br />
         { // show progress bar
           this.state.progress &&
-          <div style={{ padding: 10 }}>
+          <div className="progress" style={{ padding: 10 }}>
             <CirclularProgress />
             <br />
           </div>
@@ -96,7 +96,7 @@ export default class Geolocation extends React.Component<Props, State> {
         }
         { // show geolocation info
           this.state.latitude &&
-          <div className="lat-long">
+          <div className="latLong">
             Latitude: {this.state.latitude}
             <br />
             Longitude: {this.state.longitude}

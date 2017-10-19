@@ -12,6 +12,7 @@ export default class PushNotification extends React.Component<{}, {}> {
     console.log('set up push notifications');
   };
 
+  // TODO: add push service workers 
   render() {
 
     return (

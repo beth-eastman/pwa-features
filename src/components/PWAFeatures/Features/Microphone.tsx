@@ -90,10 +90,6 @@ export default class Microphone extends React.Component<Props, State> {
   /* render the camera canvas */
   render() {
 
-    // if (navigator.getUserMedia) {
-    //
-    // }
-
     return (
       <div style={{ textAlign: 'center' }}>
         <MicrophoneIcon />

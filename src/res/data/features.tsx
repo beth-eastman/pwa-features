@@ -14,7 +14,7 @@ const n = navigator as any;
 const w = window as any;
 
 /* check all features for availability */
-const cameraCapable = !!(n.getUserMediad || n.webkitGetUserMedia ||
+const cameraCapable = !!(n.getUserMedia || n.webkitGetUserMedia ||
   n.mozGetUserMedia || n.msGetUserMedia);
 const microphoneCapable = !!(n.getUserMedia || n.webkitGetUserMedia ||
   n.mozGetUserMedia || n.msGetUserMedia);

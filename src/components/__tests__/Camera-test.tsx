@@ -2,36 +2,63 @@
  * Testing the Camera component
  */
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Camera from '../PWAFeatures/Features/Camera';
 import * as injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
-const renderComponent = (props = {}) => mount(
+const stream = 'somestream';
+
+const mockNavigator = {
+  getUserMedia: (callback, error) => callback(stream),
+  mediaDevices: {
+    getUserMedia: (constraints) => Promise.resolve(stream)
+  }
+};
+
+// Mock window.navigator objects & functions
+const g = global as any;
+g.navigator = mockNavigator;
+
+const wrapper = () => shallow(
   <MuiThemeProvider>
     <Camera />
   </MuiThemeProvider>
-);
+).dive();
 
 describe('<Camera />', () => {
 
-  it('should render 3 <FlatButtons />', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.find('FlatButton').length).toEqual(3);
+  it('should have an <ImageGallery />', () => {
+    expect(wrapper().find('ImageGallery').length).toEqual(1);
   });
 
-  // it('', () => {
-  //   const renderedComponent = renderComponent();
-  //   expect(renderedComponent.find('').length).toEqual();
-  // });
-  //
-  // it('should take photo if camera open', () => {
-  //
-  // });
-  //
-  // it('should not take photo if camera not open', () => {
-  //
-  // });
+  it('should have initial state', () => {
+    const wrap = wrapper();
+    expect(wrap.state().cameraOpen).toEqual(false);
+    expect(wrap.state().localMediaStream).toEqual(null);
+    expect(wrap.state().open).toEqual(false);
+    expect(wrap.state().photos).toEqual([]);
+  });
+
+  xit('Open Camera <FlatButton /> should open camera', () => {
+    console.log(g.navigator);
+    const wrap = wrapper();
+    wrap.find('.openCameraButton').simulate('touchTap');
+    expect(wrap.state().cameraOpen).toEqual(true);
+  });
+
+  xit('Stop Camera <FlatButton /> should stop camera', () => {
+    const wrap = wrapper();
+    wrap.find('.stopCameraButton').simulate('touchTap');
+    expect(wrap.state().cameraOpen).toEqual(false);
+  });
+
+  xit('Take a Photo <FlatButton /> should take photo', () => {
+    const wrap = wrapper();
+    wrap.find('.takePhotoButton').simulate('touchTap');
+    expect(wrap.state().cameraOpen).toEqual(false);
+  });
+
 });

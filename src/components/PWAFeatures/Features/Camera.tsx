@@ -60,12 +60,15 @@ export default class Camera extends React.Component<any,any> {
       // for each current track stop the video
       for (let track of tracks) {
         track.stop();
-        this.setState({ cameraOpen: false });
       }
+      
+      tracks = null;
+      video.srcObject = null;
 
-      this.setState({ localMediaStream: null });
-    } else {
-      console.log('No video is available')
+      this.setState({
+        cameraOpen: false,
+        localMediaStream: null
+      });
     }
   }
 
@@ -89,8 +92,7 @@ export default class Camera extends React.Component<any,any> {
          });
 
     } else {
-      this.setState({ cameraOpen: true });
-      console.log('error taking photo');
+      this.setState({ cameraOpen: false });
     }
   };
 
@@ -98,22 +100,35 @@ export default class Camera extends React.Component<any,any> {
   render() {
     let camera = null;
     camera = (
-        <div>
-          <h2>Camera </h2>
-            <FlatButton label={"Open Camera"} onTouchTap={this.testCamera} icon={<VideoIcon />} />
-            <FlatButton label={"Stop Camera"}  onTouchTap={this.stopCamera} icon={<VideoIcon />} />
-            <FlatButton label={"Take a Photo"} onTouchTap={this.takePhoto} icon={<PhotoIcon />} /><br />
-            <video  id="video" width="500" height="300" />
-            <canvas hidden={true} id="canvas" width="500" height="300" style={{backgroundColor: 'grey'}}></canvas>
-          <br />
-        </div>
-      );
+      <div>
+        <h2>Camera </h2>
+          <FlatButton
+            className="openCameraButton"
+            label={"Open Camera"}
+            onTouchTap={this.testCamera}
+            icon={<VideoIcon />} />
+          <FlatButton
+            className="stopCameraButton"
+            label={"Stop Camera"}
+            onTouchTap={this.stopCamera}
+            icon={<VideoIcon />} />
+          <FlatButton
+            className="takePhotoButton"
+            label={"Take a Photo"}
+            onTouchTap={this.takePhoto}
+            icon={<PhotoIcon />} />
+            <br />
+          <video  id="video" width="500" height="300" />
+          <canvas hidden={true} id="canvas" width="500" height="300"></canvas>
+        <br />
+      </div>
+    );
 
     return (
       <div style={{ textAlign: 'center' }}>
         {camera}
         <Divider />
-        <ImageGallery appPage={this.props.appPage} images={images} />
+        <ImageGallery images={images} />
         <SnackBar
           message="Please open the camera to take a photo"
           open={this.state.cameraOpen}

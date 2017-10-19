@@ -6,7 +6,7 @@
   "author": "T2",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose --coverage",
     "build": "webpack --config webpack.pwa.config.js",
     "start": "webpack-dev-server",
     "serve": "node scripts/server.js",
