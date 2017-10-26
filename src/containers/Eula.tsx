@@ -31,7 +31,7 @@
  */
 import {connect} from 'react-redux';
 import EulaComponent from '../components/Eula';
-import {eulaAccepted,eulaRejected} from '../actions';
+import {eulaAccepted, eulaRejected} from '../actions';
 
 const getPlatform = () =>{
   let platform = 'browser';
@@ -56,7 +56,6 @@ const dispatchToProps = (dispatch) => {
     accept: () => dispatch(eulaAccepted()),
     reject: () => dispatch(eulaRejected())
   }
-
 }
 
 export default connect(

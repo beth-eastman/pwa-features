@@ -35,11 +35,15 @@ import {
   T2_APP_MESSAGE_CLEAR,
   T2_APP_MESSAGE_START,
   EULA_ACCEPTED,
-  EULA_REJECTED
+  EULA_REJECTED,
+  PUSH_NOTIFICATIONS_ENABLED,
+  PUSH_NOTIFICATIONS_DISABLED
 } from '../actions';
 import {combineReducers} from 'redux';
 
-
+const defaultPushNotifications = {
+  pushNotifications: false
+}
 
 
 const defaultUser = {
@@ -88,6 +92,18 @@ const settings = (state = defaultSettings,action) => {
   return state;
 }
 
+const notifications = (state = defaultPushNotifications, action) => {
+  switch(action.type) {
+    case PUSH_NOTIFICATIONS_ENABLED:
+      state = {...state, pushNotifications: true};
+      break;
+    case PUSH_NOTIFICATIONS_DISABLED:
+      state = {...state, pushNotifications: false};
+      break;
+  }
+  return state;
+}
+
 
 const view = (state = defaultView, action) => {
   switch (action.type) {
@@ -107,7 +123,8 @@ const view = (state = defaultView, action) => {
 const defaultReducers = {
   user,
   view,
-  settings
+  settings,
+  notifications
 }
 
 const reducer = combineReducers({

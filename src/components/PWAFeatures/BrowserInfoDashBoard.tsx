@@ -1,10 +1,9 @@
 /**
- * @file HomePage.tsx
- * Home page for the store demo.
+ * @file BrowserInfoDashBoard.tsx
+ * Displays basic information about the browser such as browser platform,
+ * version, etc.
  *
- * Created by Jack LightFoot on 08/22/2017
- *
- * T2 PWA Starter
+ * PWA Features
  *
  * Copyright © 2009-2017 United States Government as represented by
  * the Chief Information Officer of the National Center for Telehealth

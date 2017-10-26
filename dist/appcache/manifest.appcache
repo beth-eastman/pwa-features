@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:10/19/2017, 3:49:54 PM
+#ver:10/26/2017, 1:13:12 PM
 #plugin:4.8.3
 
 CACHE:
@@ -19,8 +19,8 @@ CACHE:
 ../2.bundle.js
 ../3.bundle.js
 ../bundle.js
-../manifest.json
 ../
+../manifest.json
 
 NETWORK:
 *

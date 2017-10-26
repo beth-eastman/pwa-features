@@ -53,6 +53,7 @@ describe('<Motions />', () => {
 
     wrap.instance().getRotation(goodValues);
     expect(wrap.state().rotation).toEqual([0, 1, 2]);
+    // should not set state for null values
     wrap.instance().getRotation(badValues);
     expect(wrap.state().rotation).toEqual([0, 1, 2]);
   });

@@ -200,7 +200,6 @@ export default class Motions extends React.Component<Props, State> {
   }
 
   // TODO: fix setSate being called after the component dismounts
-
   render() {
     const notAvailable = 'Not Available';
     return (

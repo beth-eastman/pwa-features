@@ -4,7 +4,7 @@ import Camera from '../../components/PWAFeatures/Features/Camera';
 import Microphone from '../../components/PWAFeatures/Features/Microphone';
 import Geolocation from '../../components/PWAFeatures/Features/Geolocation';
 import Vibration from '../../components/PWAFeatures/Features/Vibration';
-import PushNotification from '../../components/PWAFeatures/Features/PushNotification';
+import PushNotification from '../../containers/PWAFeatures/PushNotifications';
 import FileAccess from '../../components/PWAFeatures/Features/FileAccess';
 import Battery from '../../components/PWAFeatures/Features/Battery';
 import Orientation from '../../components/PWAFeatures/Features/Orientation';
@@ -21,13 +21,13 @@ const microphoneCapable = !!(n.getUserMedia || n.webkitGetUserMedia ||
 const blueToothCapable = 'bluetooth' in navigator;
 const pushNotificationsCapable = 'serviceWorker' in navigator;
 const vibrationCapable = navigator.vibrate ? true : false;
-const proximityCapable = false;
+// const proximityCapable = false;
 const deviceOrientation = 'DeviceOrientationEvent' in window;
 const batteryStatusCapable = ('getBattery' in navigator ||
       ('battery' in navigator && 'Promise' in window)) !== false;
 const geolocation = navigator.geolocation ? true : false;
 const fileAccessCapable = w.File !== undefined;
-const vrCapable = false;
+// const vrCapable = false;
 const threeDMotionCapable = 'Accelerometer' in window || 'Gyroscope' in window || 'DeviceMotionEvent' in window;
 
 export interface FeatureInterface {
@@ -109,7 +109,7 @@ const features : FeatureInterface[] = [
     featureEnabled: fileAccessCapable,
     component: <FileAccess />,
   },
-  {
+  /*{
     id: 10,
     featureName: 'Proximity',
     featureDetails: 'Get Proximity of Device',
@@ -122,7 +122,7 @@ const features : FeatureInterface[] = [
     featureDetails: 'Use Virtual Reality Device',
     featureEnabled: vrCapable,
     component: null,
-  },
+  },*/
 ]
 
 export default features;

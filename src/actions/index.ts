@@ -36,6 +36,9 @@ export const T2_APP_MESSAGE_CLEAR = 'T2.APP_MESSAGE_CLEAR';
 export const EULA_ACCEPTED = 'T2.EULA_ACCEPTED';
 export const EULA_REJECTED = 'T2.EULA_REJECTED';
 
+// testing actions
+export const PUSH_NOTIFICATIONS_DISABLED = 'T2.PUSH_NOTIFICATIONS_DISABLED'
+export const PUSH_NOTIFICATIONS_ENABLED = 'T2.PUSH_NOTIFICATIONS_ENABLED';
 
 export const SORT_ALPHABETICAL = 'default';
 export const SORT_DEFAULT = 'default';
@@ -44,6 +47,18 @@ export const sorts = {
   SORT_ALPHABETICAL,
   SORT_DEFAULT,
   SORT_LOCATION
+}
+
+export const pushNotificationsEnabled = () => {
+  return {
+    type: PUSH_NOTIFICATIONS_ENABLED
+  }
+}
+
+export const pushNotificationsDisabled = () => {
+  return {
+    type: PUSH_NOTIFICATIONS_DISABLED
+  }
 }
 
 

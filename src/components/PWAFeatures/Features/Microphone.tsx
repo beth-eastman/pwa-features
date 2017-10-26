@@ -27,24 +27,31 @@ export default class Microphone extends React.Component<Props, State> {
            open: false,
            recordings: [],
        };
+
+       this.testMicrophone = this.testMicrophone.bind(this);
+       this.stopMicrophone = this.stopMicrophone.bind(this);
+       this.recordMicrophone = this.recordMicrophone.bind(this);
+       this.getUserMedia = this.getUserMedia.bind(this);
+       this.getStream = this.getStream.bind(this);
+       this.stopStream = this.stopStream.bind(this);
    }
 
   /* test the camera */
-  testMicrophone = () => {
+  testMicrophone() {
     console.log('test microphone');
   }
 
   /* stop current video stream */
-  stopMicrophone = () => {
+  stopMicrophone() {
     console.log('stop microphone');
   };
 
   /* Microphone */
-  recordMicrophone = () => {
+  recordMicrophone() {
     console.log('mircrophonerecording');
   };
 
-  getUserMedia = (options, successCallback, failureCallback)  => {
+  getUserMedia(options, successCallback, failureCallback) {
     const n : any = navigator;
     var api = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
     if (api) {
@@ -53,16 +60,20 @@ export default class Microphone extends React.Component<Props, State> {
     console.log('User Media API not supported.');
   }
 
-  getStream = () => {
+  getStream() {
       const n : any = navigator;
       const w : any = window;
 
       let constraints = {};
       constraints['audio'] = true;
 
+      // var that = this;
       this.getUserMedia(constraints, function(stream) {
         let mediaControl : any = document.querySelector('audio');
-
+        console.log('getusermedia');
+        // this.setState({
+        //   localMediaStream: stream,
+        // });
         if (n.mozGetUserMedia) {
           mediaControl.mozSrcObject = stream;
         } else {
@@ -74,7 +85,7 @@ export default class Microphone extends React.Component<Props, State> {
       });
   }
 
-  stopStream = () => {
+  stopStream() {
     const n : any = navigator;
     let mediaControl : any = document.querySelector('audio');
 
@@ -84,12 +95,10 @@ export default class Microphone extends React.Component<Props, State> {
       mediaControl.srcObject = null;
       mediaControl.src = null;
     }
-
   }
 
   /* render the camera canvas */
   render() {
-
     return (
       <div style={{ textAlign: 'center' }}>
         <MicrophoneIcon />

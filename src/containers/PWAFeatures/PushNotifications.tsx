@@ -1,6 +1,7 @@
 /**
- * @file BrowserInfoDashBoard.tsx
- * Access device files, will simply show file name of the selected file.
+ * @file PushNotification.tsx
+ * Container for PushNotifications. Accesses redux for status if push
+ * notifications are enabled.
  *
  * PWA Features
  *
@@ -27,21 +28,27 @@
  * Government Agency Point of Contact for
  * Original Software: robert.a.kayl.civ@mail.mil
  */
-import * as React from 'react';
+import {connect} from 'react-redux';
+import PushNotification from '../../components/PWAFeatures/Features/PushNotification';
+import { pushNotificationsEnabled, pushNotificationsDisabled } from '../../actions';
 
-// Icons
-import File from 'material-ui/svg-icons/file/folder';
-
-export default class FileAccess extends React.Component<{}, {}> {
-
-  render() {
-    return (
-      <div style={{ textAlign: 'center' }}>
-        <File style={{ textAlign: 'center' }} />
-        <br />
-        <input style={{ border: '1px solid' }} type="file" id="input" />
-        <br />
-      </div>
-    );
+/*
+  Set push notification status
+ */
+const stateToProps = (state) => {
+  return {
+    pushNotifications: state.notifications.pushNotifications,
   }
 }
+
+/*
+  Use redux for enable and disabling
+ */
+const dispatchToProps = (dispatch, ownProps) => {
+  return {
+    enable: () => dispatch(pushNotificationsEnabled()),
+    disable: () => dispatch(pushNotificationsDisabled())
+  }
+}
+
+export default connect(stateToProps, dispatchToProps)(PushNotification);

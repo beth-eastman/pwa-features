@@ -4,9 +4,7 @@
  * a feature is enabled, feature details, as well as the ability
  * to test the function if it is enabled on the device.
  *
- * Created by Bethany Eastman on 08/22/2017
- *
- * T2 Feature App
+ * PWA Features
  *
  * Copyright © 2009-2017 United States Government as represented by
  * the Chief Information Officer of the National Center for Telehealth

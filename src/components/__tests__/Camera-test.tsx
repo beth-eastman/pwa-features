@@ -30,6 +30,10 @@ const wrapper = () => shallow(
 
 describe('<Camera />', () => {
 
+  it('should have 3 FlatButtons', () => {
+    expect(wrapper().find('FlatButton').length).toEqual(3);
+  });
+
   it('should have an <ImageGallery />', () => {
     expect(wrapper().find('ImageGallery').length).toEqual(1);
   });

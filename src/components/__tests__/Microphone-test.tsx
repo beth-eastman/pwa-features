@@ -10,9 +10,7 @@ import * as injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 const g = global as any;
-// g.navigator.Microphone = mockMicrophone;
-g.getUserMedia = jest.fn();
-
+g.navigator.getUserMedia = jest.fn().mockReturnValue('stream');
 
 /*
   ShallowRender.dive() will return <Microphone /> component
@@ -30,16 +28,19 @@ describe('<Microphone />', () => {
     expect(wrapper().state('open')).toBe(false);
   });
 
-  it('getUserMedia() should get correct userMedia object for browser', () => {
+  xit('getUserMedia() should get correct userMedia object for browser', () => {
       // const wrap = wrapper();
   });
 
-  it('getStream() should create stream', () => {
+  xit('getStream() should create stream', () => {
       const wrap = wrapper();
       wrap.instance().getStream();
+
+      expect(wrap.state().localMediaStream).not.toBeNull();
+      // expect(wrap.state().open).toEqual(true);
   });
 
-  it('stopStream() should stop stream', () => {
+  xit('stopStream() should stop stream', () => {
       // const wrap = wrapper();
   });
 

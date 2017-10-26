@@ -23,7 +23,11 @@ g.navigator.PushNotification = mockPushNotification;
  */
 const wrapper = () => shallow(
   <MuiThemeProvider>
-    <PushNotification />
+    <PushNotification
+      enable={jest.fn()}
+      disable={jest.fn()}
+      pushNotifications={false}
+    />
   </MuiThemeProvider>
 ).dive();
 
@@ -32,6 +36,11 @@ describe('<PushNotification />', () => {
 
   it('should render an <FlatButton> tag', () => {
     expect(wrapper().find('FlatButton').length).toEqual(1);
+  });
+
+  it('should show enable push notification button', () => {
+    console.log(wrapper().find('FlatButton').props());
+    expect(wrapper().find('FlatButton').props().label).toEqual("Send Push Notifications");
   });
 
 });

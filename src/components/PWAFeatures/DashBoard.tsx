@@ -1,10 +1,9 @@
 /**
  * @file DashBoard.tsx
- * Dashboard for PWA functionalities for device
+ * Dashboard for PWA functionalities for device. Lists all of the available Features
+ * and has a card to test the features of each.
  *
- * Created by Bethany Eastman on 08/22/2017
- *
- * T2 PWA Starter
+ * PWA Starter
  *
  * Copyright © 2009-2017 United States Government as represented by
  * the Chief Information Officer of the National Center for Telehealth

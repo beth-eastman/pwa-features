@@ -41,12 +41,12 @@ const stateToProps = (state,ownProps: OwnProps):StateToProps => {
   }
 }
 
-const dispatchToProps = (dispatch,ownProps) => {
+const dispatchToProps = (dispatch, ownProps) => {
   return {
-    setPageTitle: (title:string) => {
+    setPageTitle: (title : string) => {
       dispatch(setPageTitle(title));
     },
-    sendMessage: (message: string) => {
+    sendMessage: (message : string) => {
       dispatch(sendMessage(message));
     }
   }
@@ -58,7 +58,8 @@ interface OwnProps {
   appType: string;
 }
 
-interface DispPropsInterface{
+interface DispPropsInterface {
+  
 }
 
 interface StateToProps{
