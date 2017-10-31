@@ -18,12 +18,26 @@ const wrapper = () => shallow(
   </MuiThemeProvider>
 ).dive();
 
+const mockFiles = [
+  {name: '1', type: 'file', size: 3, lastModifiedDate: {toTimeString: () => {'2'}}},
+  {name: '2', type: 'img', size: 2, lastModifiedDate: {toTimeString: () => {'3'}}}
+]
+
 // tests
 describe('<FileAccess />', () => {
+
+  it('should have initial state', () => {
+    expect(wrapper().state().length).toEqual(0);
+  });
 
   it('should have <input /> element for files', () => {
     expect(wrapper().find('input').length).toEqual(1);
   });
 
+  it('handleFiles() should add all files', () => {
+    const wrap = wrapper();
+    wrap.instance().handleFiles(mockFiles);
+    expect(wrap.state().length).toEqual(2);
+  });
 
 });

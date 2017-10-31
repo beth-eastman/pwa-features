@@ -26,6 +26,7 @@ describe('<Proximity />', () => {
     const wrap = wrapper();
     const testValue = {near: true};
     const expectedValue = 'near';
+    // expect getProximity to set state to near when near received
     wrap.instance().getProximity(testValue);
     expect(wrap.state().proximity).toEqual(expectedValue);
   });
@@ -34,6 +35,7 @@ describe('<Proximity />', () => {
     const wrap = wrapper();
     const testValue = {near: false};
     const expectedValue = 'far';
+    // expect getProximity to set state to far when not near received
     wrap.instance().getProximity(testValue);
     expect(wrap.state().proximity).toEqual(expectedValue);
   });

@@ -1,6 +1,6 @@
 /**
  * @file BrowserInfoDashBoard.tsx
- * Access device files, will simply show file name of the selected file.
+ * Access device files using browser File API
  *
  * PWA Features
  *
@@ -28,11 +28,61 @@
  * Original Software: robert.a.kayl.civ@mail.mil
  */
 import * as React from 'react';
+import FileItem from './FileItem';
 
 // Icons
 import File from 'material-ui/svg-icons/file/folder';
 
-export default class FileAccess extends React.Component<{}, {}> {
+export interface Props {
+
+}
+
+export interface State {
+  length: number;
+}
+
+let fileArray = [];
+
+export default class FileAccess extends React.Component<Props, State> {
+
+  // TODO: use File API
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      length: 0
+    };
+
+    this.handleFiles = this.handleFiles.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    fileArray = [];
+    this.handleFiles(event.target.files);
+  }
+
+  handleFiles(files) {
+    const that = this;
+
+    for (var i = 0; i < files.length; ++i) {
+      var file = files[i];
+
+      fileArray.push(
+          <FileItem
+            key={file.name + '-' + file.size}
+            name={file.name}
+            type={file.type}
+            size={file.size}
+            lastModifiedDate={file.lastModifiedDate.toTimeString()}
+          />
+      );
+    }
+
+    that.setState({
+      length: files.length,
+    });
+  }
 
   /* Use <input> to access files */
   render() {
@@ -40,8 +90,27 @@ export default class FileAccess extends React.Component<{}, {}> {
       <div style={{ textAlign: 'center' }}>
         <File style={{ textAlign: 'center' }} />
         <br />
-        <input style={{ border: '1px solid' }} type="file" id="input" />
+        <input type="file" onChange={this.handleChange} multiple />
+        <br /><br />
+        {
+          this.state.length &&
+          <div>
+            Files selected: {this.state.length}
+          </div>
+        }
         <br />
+        {
+          fileArray.length > 0 &&
+          <div>
+            <ul>
+            {
+              fileArray.map((file) => {
+                return(file)
+              })
+            }
+            </ul>
+          </div>
+        }
       </div>
     );
   }
