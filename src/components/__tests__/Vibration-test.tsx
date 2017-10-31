@@ -10,8 +10,6 @@ import * as injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 // mock global navigator Vibration objects
-
-
 const g = global as any;
 g.navigator.vibrate = jest.fn().mockReturnValue(true);
 
@@ -37,12 +35,15 @@ describe('<Vibration />', () => {
 
   it('vibrateDevice() returns false if device does not vibrate', () => {
     const wrap = wrapper();
+    // mock vibrate feature to be unsuccessfull
     g.navigator.vibrate.mockReturnValueOnce(false);
     expect(wrap.instance().vibrateDevice()).toEqual(false);
   });
 
   it('Vibrate <FlatButton /> should vibrate when selected', () => {
     const wrap = wrapper();
+
+    // simulate user selecting vibrate button
     wrap.find('FlatButton').simulate('touchTap');
     expect(wrap.instance().vibrateDevice()).toHaveBeenCalled;
   })

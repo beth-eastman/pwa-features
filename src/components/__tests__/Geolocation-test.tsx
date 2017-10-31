@@ -9,10 +9,11 @@ import * as injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
+// simulated error codes
 const err1 = { code:  1, PERMISSION_DENIED: 1  };
 const err2 = { code:  2, PERMISSION_DENIED: 1, POSITION_UNAVAILABLE: 2  };
-const err3 = { code: 3, PERMISSION_DENIED: 1, POSITION_UNAVAILABLE: 2, TIMEOUT: 3 }
-const err4 = { code: 4, PERMISSION_DENIED: 1, POSITION_UNAVAILABLE: 2, TIMEOUT: 3, UNKNOWN_ERROR: 4 }
+const err3 = { code: 3, PERMISSION_DENIED: 1, POSITION_UNAVAILABLE: 2, TIMEOUT: 3 };
+const err4 = { code: 4, PERMISSION_DENIED: 1, POSITION_UNAVAILABLE: 2, TIMEOUT: 3, UNKNOWN_ERROR: 4 };
 
 // mock global navigator geolocation objects
 const mockGeolocation = {
@@ -89,17 +90,28 @@ describe('<Geolocation />', () => {
 
   it('Pushing <FlatButton /> should show latitude and longitude', () => {
     const wrap = wrapper();
+
+    // simulate user pressing get geolocation button
     wrap.find('FlatButton').simulate('touchTap');
+
+    // state values should be set to the mockGeolocation
+    // (latitude: 100, longitude: 100)
     expect(wrap.state().latitude).toEqual(100);
     expect(wrap.state().longitude).toEqual(100);
   });
 
   it('Pushing <FlatButton /> with error shows error message', () => {
-    g.navigator.geolocation = mockGeolocationFail;
+    g.navigator.geolocation = mockGeolocationFail; // geolocation request will fail
     const wrap = wrapper();
     expect(wrap.state().errorMessage).toEqual(null);
+
+    // simulate user pressing get geolocation button
     wrap.find('FlatButton').simulate('touchTap');
+
+    // expect geolocation request to fail
     expect(wrap.state().errorMessage).toEqual("User denied the request for Geolocation.");
+
+    // return geolocation to default value
     g.navigator.geolocation = mockGeolocation;
   });
 

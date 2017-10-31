@@ -1,6 +1,6 @@
 /**
  * @file PushNotifications.tsx
- * Has button to send push notifications or stop push notification service. 
+ * Has button to send push notifications or stop push notification service.
  *
  * PWA Features
  *
@@ -45,7 +45,7 @@ export interface State {
 
 export default class PushNotification extends React.Component<Props, State> {
 
-  // TODO: add push service workers
+  // TODO: add push service workers (REQUIRES BACKEND)
   render() {
     const enabledButton = (
       <FlatButton

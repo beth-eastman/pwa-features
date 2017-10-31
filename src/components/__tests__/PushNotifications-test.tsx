@@ -9,15 +9,6 @@ import * as injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
-// mock global navigator PushNotification objects
-const mockPushNotification = {
-  requestDevice: jest.fn(),
-};
-
-const g = global as any;
-g.navigator.PushNotification = mockPushNotification;
-
-
 /*
   ShallowRender.dive() will return <PushNotification /> component
  */
@@ -39,7 +30,6 @@ describe('<PushNotification />', () => {
   });
 
   it('should show enable push notification button', () => {
-    console.log(wrapper().find('FlatButton').props());
     expect(wrapper().find('FlatButton').props().label).toEqual("Send Push Notifications");
   });
 

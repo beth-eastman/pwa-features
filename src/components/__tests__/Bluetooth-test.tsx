@@ -31,7 +31,6 @@ const wrapper = shallow(
 describe('<Bluetooth />', () => {
 
   it('should render an <FlatButton> tag', () => {
-    // const renderedComponent = renderComponent();
     expect(wrapper.find('FlatButton').length).toEqual(1);
   });
 

@@ -57,9 +57,9 @@ describe('<Orientation />', () => {
 
   xit('should set correct orientation data', () => {
       const wrap = wrapper();
-      wrap.find('FlatButton').simulate('touchTap');
 
-      // TODO: simulate event for orientatitons
+      // simulate user selecting get device orientation
+      wrap.find('FlatButton').simulate('touchTap');
 
       expect(wrap.state().alpha).toEqual(0);
       expect(wrap.state().beta).toEqual(1);

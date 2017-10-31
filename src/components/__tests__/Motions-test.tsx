@@ -68,8 +68,10 @@ describe('<Motions />', () => {
     const wrap = wrapper();
     const acceleration = {x: 1, y: 2, z: 3};
     const nullAccceleration = {x: null, y: null, z: null};
+    // expect values to be set in state
     wrap.instance().getAcceleration(acceleration, 'withoutgravity');
     expect(wrap.state().accelerationNoGravity).toEqual([1, 2, 3]);
+    // expect null values wont be set in state
     wrap.instance().getAcceleration(nullAccceleration, 'withoutgravity');
     expect(wrap.state().accelerationNoGravity).toEqual([1, 2, 3]);
 

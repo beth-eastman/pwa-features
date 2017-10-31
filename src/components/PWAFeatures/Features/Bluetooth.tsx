@@ -77,9 +77,22 @@ export default class Bluetooth extends React.Component<Props, State> {
       ],
     }
 
-    n.bluetooth.requestDevice(options).then(function(device) {
-      console.log('Name: ' + device.name);
-      console.log('Paired: ' + device.paired);
+    n.bluetooth.requestDevice(options).then(function (device) {
+      return device.gatt.connect();
+    })
+    .then(function (server) {
+      return server.getPrimaryService('battery_service');
+    })
+    .then(function (service) {
+      return service.getCharacteristic('battery_level');
+    })
+    .then(function (characteristic) {
+      return characteristic.readValue();
+    })
+    .then(function (value) {
+      that.setState({
+        batteryPercentage: value.getUint8(0),
+      });
     })
     .catch(function(error) {
       that.setState({

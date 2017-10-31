@@ -37,11 +37,6 @@ describe('<Microphone />', () => {
       wrap.instance().getStream();
 
       expect(wrap.state().localMediaStream).not.toBeNull();
-      // expect(wrap.state().open).toEqual(true);
-  });
-
-  xit('stopStream() should stop stream', () => {
-      // const wrap = wrapper();
   });
 
 });

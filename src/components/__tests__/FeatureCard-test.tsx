@@ -12,6 +12,7 @@ injectTapEventPlugin();
 
 const featureComponent = (<h1>Fancy Feature Component</h1>);
 
+// A test example of 'enabled' feature (feature available to use in browser)
 const enabledFeatureProps : FeatureInterface = {
   id: 0,
   featureName: 'SomeFancyEnabledFeatureName',
@@ -20,6 +21,7 @@ const enabledFeatureProps : FeatureInterface = {
   component: featureComponent,
 };
 
+// A test example of 'disabled' feature  (feature not available in browser)
 const disabledFeatureProps : FeatureInterface = {
   id: 0,
   featureName: 'SomeFancyDisabledFeatureNAme',
@@ -28,7 +30,9 @@ const disabledFeatureProps : FeatureInterface = {
   component: featureComponent,
 };
 
-// a FeatureCard component for an enabled feature
+/*
+  Shallow renders an enabled <FeatureCard />
+ */
 const enabledWrapper = shallow(
   <MuiThemeProvider>
     <FeatureCard
@@ -37,7 +41,9 @@ const enabledWrapper = shallow(
   </MuiThemeProvider>
 ).dive();
 
-// a FeatureCard component for a disabled feature
+/*
+  Shallow renders a disabled <FeatureCard />
+ */
 const disabledWrapper = shallow(
   <MuiThemeProvider>
     <FeatureCard
@@ -46,7 +52,6 @@ const disabledWrapper = shallow(
   </MuiThemeProvider>
 ).dive();
 
-// TODO: get state after render component
 describe('<FeatureCard />', () => {
 
   it('should have default closed <Dialog />', () => {

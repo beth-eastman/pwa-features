@@ -47,14 +47,15 @@ describe('<Camera />', () => {
   });
 
   xit('Open Camera <FlatButton /> should open camera', () => {
-    console.log(g.navigator);
     const wrap = wrapper();
+    // simulate user clicking 'open camera' button
     wrap.find('.openCameraButton').simulate('touchTap');
     expect(wrap.state().cameraOpen).toEqual(true);
   });
 
   xit('Stop Camera <FlatButton /> should stop camera', () => {
     const wrap = wrapper();
+    // simulate user clicking 'stop camera button'
     wrap.find('.stopCameraButton').simulate('touchTap');
     expect(wrap.state().cameraOpen).toEqual(false);
   });

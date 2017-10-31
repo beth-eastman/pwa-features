@@ -102,7 +102,7 @@ export default class Camera extends React.Component<any,any> {
     }
   }
 
-  /* Take a Photo */
+  /* Take a Photo and add image to image gallery */
   takePhoto() {
     let videoObj = { video: true, audio: true };
     const that = this;

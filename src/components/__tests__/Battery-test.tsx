@@ -9,6 +9,7 @@ import * as injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
+// values to test <Battery /> state set
 const battery = {
   charging: false,
   level: 0.03,

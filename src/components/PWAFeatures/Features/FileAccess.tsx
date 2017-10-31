@@ -34,6 +34,7 @@ import File from 'material-ui/svg-icons/file/folder';
 
 export default class FileAccess extends React.Component<{}, {}> {
 
+  /* Use <input> to access files */
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
