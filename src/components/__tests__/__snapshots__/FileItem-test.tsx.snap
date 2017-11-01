@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FileItem /> should match snapshot tests 1`] = `
+<li
+  className="fileItem"
+  style={
+    Object {
+      "textAlign": "left",
+    }
+  }
+>
+  File Name: 
+  Some File
+  <br />
+  Type: 
+  File Type
+  <br />
+  Size: 
+  1
+   bytes
+  <br />
+  Last Modified Date:  
+  1 billion years ago
+  <br />
+</li>
+`;

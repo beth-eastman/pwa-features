@@ -113,7 +113,7 @@ var timeOutId = null
 export const sendMessage = (message) => {
 
   return (dispatch,getState,extraArgs) => {
-    console.log(extraArgs);
+    // console.log(extraArgs);
     dispatch(messageStart(message));
 
     if(timeOutId){

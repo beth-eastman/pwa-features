@@ -77,7 +77,8 @@ export default class Camera extends React.Component<any,any> {
           that.setState({ cameraOpen: false });
         };
       })
-      .catch(function(err) { console.log(err.name + ": " + err.message); });
+      .catch(function(err) {
+       });
   }
 
   /* stop current video stream */

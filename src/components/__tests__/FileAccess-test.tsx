@@ -26,6 +26,15 @@ const mockFiles = [
 // tests
 describe('<FileAccess />', () => {
 
+  it('should not show file length before file added', () => {
+    const wrap = wrapper();
+    expect(wrap.find('.files').length).toEqual(0);
+    wrap.instance().handleFiles(mockFiles);
+    // after adding files expect file count to be shown
+    expect(wrap.find('.files').length).toEqual(1);
+    expect(wrap.state().length).toEqual(2);
+  });
+
   it('should have initial state', () => {
     expect(wrapper().state().length).toEqual(0);
   });

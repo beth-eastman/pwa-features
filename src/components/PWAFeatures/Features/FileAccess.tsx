@@ -93,8 +93,8 @@ export default class FileAccess extends React.Component<Props, State> {
         <input type="file" onChange={this.handleChange} multiple />
         <br /><br />
         {
-          this.state.length &&
-          <div>
+          this.state.length > 0 &&
+          <div className="files">
             Files selected: {this.state.length}
           </div>
         }

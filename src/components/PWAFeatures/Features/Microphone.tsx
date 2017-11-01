@@ -68,7 +68,6 @@ export default class Microphone extends React.Component<Props, State> {
     if (api) {
       return api.bind(n)(options, successCallback, failureCallback);
     }
-    console.log('User Media API not supported.');
   }
 
   getStream() {
@@ -88,7 +87,6 @@ export default class Microphone extends React.Component<Props, State> {
           mediaControl.src = (w.URL || w.webkitURL).createObjectURL(stream);
         }
       }, function(err) {
-          console.log('Error: ' + err);
       });
   }
 
