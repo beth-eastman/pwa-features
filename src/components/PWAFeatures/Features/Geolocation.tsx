@@ -1,7 +1,7 @@
 /**
  * @file Geolocation.tsx
- * Gets the geolocation from the browser and displays that latitude
- * and longitude of the devices current location.
+ * Gets the geolocation from the browser's navigator.geolocation API
+ * and displays that latitude and longitude of the devices current location.
  *
  * PWA Features
  *
@@ -63,15 +63,15 @@ export default class Geolocation extends React.Component<Props, State> {
     this.showError = this.showError.bind(this);
   }
 
-  /* Get latitude and longitude */
+  /* Get latitude and longitude values from navigator */
   getGeolocation() {
     const that = this;
-    // start the circular progress bar
+    // start progress bar
     this.setState({
       progress: true,
     });
 
-    // get the geolocation data & remove circular progress
+    // get geolocation & remove progress bar
     navigator.geolocation.getCurrentPosition(function(position) {
       that.setState({
         latitude: position.coords.latitude,
@@ -105,7 +105,6 @@ export default class Geolocation extends React.Component<Props, State> {
     });
 }
 
-  /* render geolocation card */
   render() {
     return (
       <div style={{ padding: 10, textAlign: 'center' }}>

@@ -57,11 +57,17 @@ export default class FileAccess extends React.Component<Props, State> {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  /* handleChange is called when a new set of files has been selected,
+   * it resets the currently selected files and handles new files
+   */
   handleChange(event) {
     fileArray = [];
     this.handleFiles(event.target.files);
   }
 
+  /* Take a list of files and push them to a list of <FileItem />
+   * components so their information can be displayed
+   */
   handleFiles(files) {
     const that = this;
 
@@ -84,7 +90,6 @@ export default class FileAccess extends React.Component<Props, State> {
     });
   }
 
-  /* Use <input> to access files */
   render() {
     return (
       <div style={{ textAlign: 'center' }}>

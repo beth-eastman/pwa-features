@@ -4,6 +4,7 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "<!-- @app_build background_color -->",
+  "type": "privileged",
   "theme_color": "<!-- @app_build theme_color -->",
   "description": "A description of the app",
   "icons": [{

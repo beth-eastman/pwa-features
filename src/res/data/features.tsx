@@ -42,6 +42,7 @@ import Orientation from '../../components/PWAFeatures/Features/Orientation';
 import Motions from '../../components/PWAFeatures/Features/Motions';
 import AmbientLight from '../../components/PWAFeatures/Features/AmbientLight';
 import Proximity from '../../components/PWAFeatures/Features/Proximity';
+import SpeechRecognition from '../../components/PWAFeatures/Features/SpeechRecognition';
 
 const n = navigator as any;
 const w = window as any;
@@ -61,6 +62,9 @@ const fileAccessCapable = w.File !== undefined;
 const threeDMotionCapable = 'Accelerometer' in window || 'Gyroscope' in window || 'DeviceMotionEvent' in window;
 const ambientLightEnabled = 'ondevicelight' in window;
 const proximityCapable = 'ondeviceproximity' in window || 'onuserproximity' in window;
+// const speechRecognitionEnabled = !!(w.SpeechRecognition || w.webKitSpeechRecognition);
+
+console.log(w);
 
 export interface FeatureInterface {
   id: number,
@@ -153,7 +157,14 @@ const features : FeatureInterface[] = [
     featureName: 'Proximity',
     featureDetails: 'Get Proximity information',
     featureEnabled: proximityCapable,
-    component: <Proximity />
+    component: <Proximity />,
+  },
+  {
+    id: 12,
+    featureName: 'Speech Recognition',
+    featureDetails: 'Use Web Speech Recognition',
+    featureEnabled: true,
+    component: <SpeechRecognition />,
   }
 ]
 

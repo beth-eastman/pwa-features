@@ -1,6 +1,6 @@
 /**
- * @file AmbientLight.tsx
- * Use browser AmbientLight feature from 'devicelight' event.
+ * @file SpeechRecognition.tsx
+ * Uses Web Speech API to recognize words.
  *
  * PWA Features
  *
@@ -28,58 +28,67 @@
  * Original Software: robert.a.kayl.civ@mail.mil
  */
 import * as React from 'react';
+// import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import VoiceIcon from 'material-ui/svg-icons/action/record-voice-over';
 
+// TODO: app needs to be privileged to get webspeech API
 export interface Props {
 
 }
 
 export interface State {
-  type: string;
+  value: string;
 }
 
-export default class AmbientLight extends React.Component<Props, State> {
+// const w : any = window;
+// const recognition = SpeechRecognition || w.webKitSpeechRecognition;
+
+export default class SpeechRecognition extends React.Component<Props, State> {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      type: null
-    }
+      value: '',
+    };
 
-    this.getAmbient = this.getAmbient.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  /* When component mounts, listen for devicelight events */
   componentWillMount() {
-    window.addEventListener('devicelight', this.getAmbient);
+    console.log('open');
   }
 
-  /* When component unmount, remove listener to avoid state being set */
   componentWillUnmount() {
-    window.removeEventListener('devicelight', this.getAmbient);
+    console.log('close');
   }
 
-  /* Recieves a devicelight event, and sets the state to light or darklight. */
-  getAmbient(event) {
-    if (event.value < 50) {
-      this.setState({
-        type: 'darklight'
-      });
-    } else {
-      this.setState({
-        type: 'brightlight'
-      });
-    }
+  /* User pressed button to start speech recognition */
+  handleClick() {
+    this.setState({ value: this.state.value + 'words'});
+    console.log(this.state.value);
+  }
+
+  /* Add text to TextField */
+  handleChange(event) {
+
   }
 
   render() {
     return(
-      <div>
-        Light Type:
-        {
-          this.state.type ? this.state.type : 'Unknown'
-        }
-      </div>
+        <div style={{ textAlign: 'center' }} >
+          <VoiceIcon /><br />
+          <div className="speech-recognition-text" style={{}}>
+            {this.state.value}
+          </div>
+          <br />
+          <FlatButton
+            label="Speech Recognition"
+            onClick={this.handleClick}
+          />
+        </div>
     );
   }
 }

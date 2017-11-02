@@ -39,7 +39,6 @@ export interface Props {
 }
 
 export interface State {
-  microphoneOpen: boolean;
   localMediaStream: any;
   open: boolean;
   recordings: any;
@@ -51,7 +50,6 @@ export default class Microphone extends React.Component<Props, State> {
        super(props);
 
        this.state = {
-           microphoneOpen: false,
            localMediaStream: null,
            open: false,
            recordings: [],
@@ -62,6 +60,10 @@ export default class Microphone extends React.Component<Props, State> {
        this.stopStream = this.stopStream.bind(this);
    }
 
+  /*
+   * Check if getUserMedia is available and return the appropriate API
+   * used by the current browser
+   */
   getUserMedia(options, successCallback, failureCallback) {
     const n : any = navigator;
     var api = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
@@ -70,26 +72,33 @@ export default class Microphone extends React.Component<Props, State> {
     }
   }
 
+  /* Use the getUserMedia API to get the video stream */
   getStream() {
       const n : any = navigator;
       const w : any = window;
 
       let constraints = {};
       constraints['audio'] = true;
-
-      // var that = this;
+      const that = this;
       this.getUserMedia(constraints, function(stream) {
         let mediaControl : any = document.querySelector('audio');
         if (n.mozGetUserMedia) {
           mediaControl.mozSrcObject = stream;
+          that.setState({
+            localMediaStream: stream
+          });
         } else {
           mediaControl.srcObject = stream;
           mediaControl.src = (w.URL || w.webkitURL).createObjectURL(stream);
+          that.setState({
+            localMediaStream: stream
+          });
         }
       }, function(err) {
       });
   }
 
+  /* Stops and streams from being sent to the audio output */
   stopStream() {
     const n : any = navigator;
     let mediaControl : any = document.querySelector('audio');
@@ -102,13 +111,12 @@ export default class Microphone extends React.Component<Props, State> {
     }
   }
 
-  /* render the camera canvas */
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
         <MicrophoneIcon />
         <br />
-        <audio controls></audio>
+        <audio controls></audio><br />
         <FlatButton label={"Record"} onTouchTap={this.getStream} /><br />
         <FlatButton label={"Stop Recording"} onTouchTap={this.stopStream} /><br />
       </div>

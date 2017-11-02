@@ -52,16 +52,19 @@ export default class Proximity extends React.Component<Props, State> {
     this.getProximity = this.getProximity.bind(this);
   }
 
+  /* Set event listeners for proximity when component mounts */
   componentWillMount() {
     window.addEventListener('deviceproximity', this.getDistance);
     window.addEventListener('userproximity', this.getProximity);
   }
 
-  componentWillDismount() {
+  /* Remove event listeners for proximity when component unmount */
+  componentWillUnmount() {
     window.removeEventListener('deviceproximity', this.getDistance);
     window.removeEventListener('userproximity', this.getProximity);
   }
 
+  /* Takes an event and sets the appropriate distance */
   getDistance(event) {
     this.setState({
       distance: event.value.toFixed(0) + ' cm ('
@@ -69,6 +72,7 @@ export default class Proximity extends React.Component<Props, State> {
     });
   }
 
+  /* Take event and set proximity to near or far */
   getProximity(event) {
     this.setState({
       proximity: event.near ? 'near' : 'far'

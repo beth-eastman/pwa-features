@@ -54,9 +54,12 @@ export default class Battery extends React.Component<{}, State> {
       batteryChargingTime: null,
       batteryDischargingTime: null,
     }
+
+    this.getBatteryStatus = this.getBatteryStatus.bind(this);
   }
 
-  getBatteryStatus = () => {
+  /* Get battery levels from navigator API and set state to return values */
+  getBatteryStatus() {
     var that = this;
     var n : any = navigator;
     return n.getBattery().then(function(battery) {

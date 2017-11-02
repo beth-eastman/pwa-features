@@ -47,7 +47,6 @@ export interface State {
   open: boolean; // show orientation values when user starts geolocation service
 }
 
-
 export default class Orientation extends React.Component<Props, State> {
 
   constructor(props) {

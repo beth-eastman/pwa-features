@@ -54,6 +54,8 @@ export default class Bluetooth extends React.Component<Props, State> {
          bluetoothConnected: false,
          errorMessage: null,
        };
+
+       this.connect = this.connect.bind(this);
    }
 
   /* Check if bluetooth is available */
@@ -65,12 +67,13 @@ export default class Bluetooth extends React.Component<Props, State> {
     }
   }
 
-  /* Connect to bluetooth low energy */
-  connect = () => {
+  /* Connect to bluetooth low energy and set state to battery percentage
+   * if the connection is valid
+   */
+  connect() {
     const that = this;
     const n = navigator as any;
 
-    // TODO: fix some provided filters
     let options = {
       filters: [
         {services: ['battery_service']}

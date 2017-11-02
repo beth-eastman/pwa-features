@@ -12,6 +12,11 @@ injectTapEventPlugin();
 const g = global as any;
 g.navigator.getUserMedia = jest.fn().mockReturnValue('stream');
 
+g.window = {
+  URL: jest.fn(),
+  webKitURL: jest.fn()
+}
+
 /*
   ShallowRender.dive() will return <Microphone /> component
  */
@@ -30,6 +35,7 @@ describe('<Microphone />', () => {
 
   xit('getUserMedia() should get correct userMedia object for browser', () => {
       // const wrap = wrapper();
+
   });
 
   xit('getStream() should create stream', () => {

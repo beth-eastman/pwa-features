@@ -11,8 +11,20 @@ injectTapEventPlugin();
 
 // TODO: mock window objects and functions
 const mockWindow = {
-  Accelerometer: null,
-  Gyroscope: null,
+  Accelerometer: {
+    start: jest.fn(),
+    stop: jest.fn(),
+    x: 2,
+    y: 2,
+    z: 2,
+  },
+  Gyroscope: {
+    start: jest.fn(),
+    stop: jest.fn(),
+    x: 1,
+    y: 1,
+    z: 1,
+  },
   DeviceMotionEvent: null,
 };
 
@@ -39,7 +51,7 @@ describe('<Motions />', () => {
     expect(wrap.state().interval).toEqual(null);
   });
 
-  it('Get motion data should getMotions()', () => {
+  it('Pressing "Get Motion Buttton" should call getMotions()', () => {
     const wrap = wrapper();
     expect(wrap.state().open).toEqual(false);
     wrap.find('FlatButton').simulate('touchTap');
@@ -64,7 +76,7 @@ describe('<Motions />', () => {
     expect(wrap.state().interval).toEqual(2);
   });
 
-  it('getAcceleration() with "withoutgravity" arg should set state', () => {
+  it('getAcceleration() "withoutgravity" arg should set state', () => {
     const wrap = wrapper();
     const acceleration = {x: 1, y: 2, z: 3};
     const nullAccceleration = {x: null, y: null, z: null};
@@ -77,10 +89,10 @@ describe('<Motions />', () => {
 
   });
 
-  it('getAcceleration() without "withoutgravity" arg should set state', () => {
+  it('getAcceleration() "withgravity" arg should set state', () => {
     const wrap = wrapper();
     const acceleration = {x: 1, y: 2, z: 3};
-    wrap.instance().getAcceleration(acceleration);
+    wrap.instance().getAcceleration(acceleration, 'withgravity');
     expect(wrap.state().accelerationWithGravity).toEqual([1, 2, 3]);
   });
 
